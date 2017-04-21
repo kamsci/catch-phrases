@@ -1,0 +1,11 @@
+{
+  "name": "catch-phrases",
+  "version": "1.0.0",
+  "description": "catch top 10 phrases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
