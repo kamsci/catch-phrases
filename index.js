@@ -3,9 +3,18 @@
 
 /* 
   Assumptions:
-  - Sentences defined by ending in on of: ! . : ?
+  - Document content is limited to alphanumeric and basic punctuation; no urls, emails, line breaks, html, etc.
+  - Sentences defined by ending in one of:
+    - period
+    - explanation point
+    - question mark
+    - semi-colon
   - Phrases are not dependent on punctiation. ie. "calm cool" is the same as "calm, cool"
-  - Parenthesis are removed as punctuation, they do not indicate new sentences
+    - Punctuation removed: 
+      - comma
+      - parenthesis
+      - colon
+      - dash (not hyphenated word) 
   - Hyphenated words are counted as 1 word. ie. "state-of-the-art"
 
 */
@@ -17,9 +26,11 @@ var dictionary = {};
   Split document string into an array of sentences with punctuation removed, except for hyphens in hyphenated words
 */
 stringToSentenceArray = (string) => {
-  string = string.replace(/,|\(|\)|\s*-|-\s*/g, "");
+  if(string === undefined) { return []; }
 
-  // split string into array on sentence ending punctuation, (! . : ?)
+  string = string.replace(/:|,|\(|\)|\s-|-\s/g, "");
+
+  // split string into array on sentence ending punctuation, (! . ; ?)
   let array = string.split(/!\s*|;\s*|\?\s*|\.\s*/g);
   if(array[array.length - 1].length === 0) {
     array.pop();
@@ -32,6 +43,8 @@ stringToSentenceArray = (string) => {
   Take sentence and phraseLength variable and break into array of phrases as long as phraseLength
 */
 checkSentenceForPhrases = (string, phraseLength) => {
+  if(string === undefined || phraseLength < 0) { return []; }
+
   let wordArr = string.split(" ");
   let arrayOfPhrases = [];
 
@@ -55,7 +68,8 @@ checkSentenceForPhrases = (string, phraseLength) => {
   Take array of phrases and add or increase count in dictionary
 */
 addPhraseToDictionary = (dictionary, phrase) => {
-  console.log("phrase: ", phrase);
+  if(phrase === "" || phrase === undefined) { return; }
+  phrase = phrase.toLowerCase();
   if(dictionary.hasOwnProperty(phrase)){
     dictionary[phrase] += 1;
   } else {

@@ -1,0 +1,10 @@
+{
+    "3": ["It has two", "has two well-thought-out", "two well-thought-out sentences", "well-thought-out sentences not", "sentences not one", "not one but", "one but two", "but two well-thought-out", "two well-thought-out sentences"],
+    "4": ["It has two well-thought-out", "has two well-thought-out sentences", "two well-thought-out sentences not", "well-thought-out sentences not one", "sentences not one but", "not one but two", "one but two well-thought-out", "but two well-thought-out sentences"],
+    "5": ["It has two well-thought-out sentences", "has two well-thought-out sentences not", "two well-thought-out sentences not one", "well-thought-out sentences not one but", "sentences not one but two", "not one but two well-thought-out", "one but two well-thought-out sentences"],
+    "6": ["It has two well-thought-out sentences not", "has two well-thought-out sentences not one", "two well-thought-out sentences not one but", "well-thought-out sentences not one but two", "sentences not one but two well-thought-out", "not one but two well-thought-out sentences"],
+    "7": ["It has two well-thought-out sentences not one", "has two well-thought-out sentences not one but", "two well-thought-out sentences not one but two", "well-thought-out sentences not one but two well-thought-out", "sentences not one but two well-thought-out sentences"],
+    "8": ["It has two well-thought-out sentences not one but", "has two well-thought-out sentences not one but two", "two well-thought-out sentences not one but two well-thought-out", "well-thought-out sentences not one but two well-thought-out sentences"],
+    "9": ["It has two well-thought-out sentences not one but two", "has two well-thought-out sentences not one but two well-thought-out", "two well-thought-out sentences not one but two well-thought-out sentences"],
+    "10": ["It has two well-thought-out sentences not one but two well-thought-out", "has two well-thought-out sentences not one but two well-thought-out sentences"]
+}
