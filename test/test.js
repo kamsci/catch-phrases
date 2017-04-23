@@ -1,17 +1,18 @@
 var expect = require('chai').expect;
-var TopTenPhrases = require('../index.js');
+var Phrases = require('../index.js');
 var expectedPhraseArrays = require('./expectedPhraseArrays.json');
 
-
-// Part 1 - Find Phrases and store in dictionary
+/* 
+  Part 1 - Find Phrases and store in dictionary
+*/
 describe('String to sentence array', () => {
   it('should return an empty array if given an empty or undefined string', () => {
     let string = "";
     let string2;
     let expectedResult = [];
 
-    let actualResult = TopTenPhrases.stringToSentenceArray(string);
-    let actualResult2 = TopTenPhrases.stringToSentenceArray(string2);
+    let actualResult = Phrases.stringToSentenceArray(string);
+    let actualResult2 = Phrases.stringToSentenceArray(string2);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -24,7 +25,7 @@ describe('String to sentence array', () => {
     let string = "This is a well-thought-out string. It has two sentences. No wait! Make that 3 sentences; or is it 4 sentences and a question?";
     let expectedResult = ["This is a well-thought-out string", "It has two sentences", "No wait", "Make that 3 sentences", "or is it 4 sentences and a question"];
 
-    let actualResult = TopTenPhrases.stringToSentenceArray(string);
+    let actualResult = Phrases.stringToSentenceArray(string);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -34,7 +35,7 @@ describe('String to sentence array', () => {
     let string = "This is a well-thought-out string. It has two sentences: not one, but two sentences (although short). No - wait! Make that 3 sentences; or is it 4 sentences and a question?";
     let expectedResult = ["This is a well-thought-out string", "It has two sentences not one but two sentences although short", "No wait", "Make that 3 sentences", "or is it 4 sentences and a question"];
 
-    let actualResult = TopTenPhrases.stringToSentenceArray(string);
+    let actualResult = Phrases.stringToSentenceArray(string);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -44,7 +45,7 @@ describe('String to sentence array', () => {
     let string = "((This is a well-thought-out string). It has two sentences: not one, but two sentences. No - wait! Make that 3 sentences; -or is it 4 sentences and a question,?)";
     let expectedResult = ["This is a well-thought-out string", "It has two sentences not one but two sentences", "No wait", "Make that 3 sentences", "or is it 4 sentences and a question"];
 
-    let actualResult = TopTenPhrases.stringToSentenceArray(string);
+    let actualResult = Phrases.stringToSentenceArray(string);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -57,8 +58,8 @@ describe('Check sentence for pharases', () => {
     let string2;
     let expectedResult = [];
 
-    let actualResult = TopTenPhrases.checkSentenceForPhrases(string, 3);
-    let actualResult2 = TopTenPhrases.checkSentenceForPhrases(string2, 3);
+    let actualResult = Phrases.checkSentenceForPhrases(string, 3);
+    let actualResult2 = Phrases.checkSentenceForPhrases(string2, 3);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -71,8 +72,8 @@ describe('Check sentence for pharases', () => {
     let string = "It has two well-thought-out sentences not one but two well-thought-out sentences";
     let expectedResult = [];
 
-    let actualResult = TopTenPhrases.checkSentenceForPhrases(string, -1);
-    let actualResult2 = TopTenPhrases.checkSentenceForPhrases(string, 100);
+    let actualResult = Phrases.checkSentenceForPhrases(string, -1);
+    let actualResult2 = Phrases.checkSentenceForPhrases(string, 100);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -85,7 +86,7 @@ describe('Check sentence for pharases', () => {
     let string = "It has two well-thought-out sentences not one but two sentences";
     let expectedResult = ["It has two well-thought-out sentences not one but two sentences"];
 
-    let actualResult = TopTenPhrases.checkSentenceForPhrases(string, 10);
+    let actualResult = Phrases.checkSentenceForPhrases(string, 10);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -96,7 +97,7 @@ describe('Check sentence for pharases', () => {
 
     for(let i = 3; i <= 10; i++){
       let expectedResult = expectedPhraseArrays[i.toString()];
-      let actualResult = TopTenPhrases.checkSentenceForPhrases(string,  i);
+      let actualResult = Phrases.checkSentenceForPhrases(string,  i);
 
       expect(actualResult).to.be.an('array');
       expect(expectedResult).to.deep.equal(actualResult);
@@ -112,8 +113,8 @@ describe('Adding a phrase to a dictionary', () => {
     let expectedDictionary = {};
 
     let actualDictionary = {};
-    TopTenPhrases.addPhraseToDictionary(actualDictionary, phrase);
-    TopTenPhrases.addPhraseToDictionary(actualDictionary, phrase2);
+    Phrases.addPhraseToDictionary(actualDictionary, phrase);
+    Phrases.addPhraseToDictionary(actualDictionary, phrase2);
 
     expect(actualDictionary).to.deep.equal(expectedDictionary);
   });
@@ -133,7 +134,7 @@ describe('Adding a phrase to a dictionary', () => {
 
     let actualDictionary = {};
     phraseArr.forEach(function(phrase) {
-      TopTenPhrases.addPhraseToDictionary(actualDictionary, phrase);
+      Phrases.addPhraseToDictionary(actualDictionary, phrase);
     });
 
     expect(actualDictionary).to.deep.equal(expectedDictionary);
@@ -147,16 +148,9 @@ describe('Adding a phrase to a dictionary', () => {
     }
 
     let actualDictionary = {};
-    TopTenPhrases.addPhraseToDictionary(actualDictionary, phraseCapitalized);
-    TopTenPhrases.addPhraseToDictionary(actualDictionary, phraseLower);
+    Phrases.addPhraseToDictionary(actualDictionary, phraseCapitalized);
+    Phrases.addPhraseToDictionary(actualDictionary, phraseLower);
 
     expect(actualDictionary).to.deep.equal(expectedDictionary);
   });
 });
-
-// Part 2: Pull Top Ten most used phrases from dictionary
-// describe('pulling Top Ten most used phrases from dictionary', () => {
-//   it('should ', () => {
-//     let phrase
-//   })
-// });
