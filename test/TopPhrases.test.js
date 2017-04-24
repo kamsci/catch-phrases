@@ -7,8 +7,9 @@ var TopPhrases = require('../TopPhrases.jsx');
 describe('Instantiate new TopPhrases object,', () => {
   it('should create a new object with defaults', () => {
     let expectedTopTenObj = {
-      maxTrackedPhrases: 10,
-      phrases: []
+      maxPhraseCounts: 10,
+      totalPhrases: 0,
+      phrases: {}
     }
 
     let actualTopTenObj = new TopPhrases(10);
@@ -18,8 +19,9 @@ describe('Instantiate new TopPhrases object,', () => {
 
   it('should create a new object with maxPhrases 10 if no parameter specified', () => {
     let expectedTopTenObj = {
-      maxTrackedPhrases: 10,
-      phrases: []
+      maxPhraseCounts: 10,
+      totalPhrases: 0,
+      phrases: {}
     }
 
     let actualTopTenObj = new TopPhrases();
@@ -48,10 +50,11 @@ describe('Check to add Phrase: ', () => {
   describe('If TopPhrases obj is empty,', () => {
     it('should add the phrase with count as obj to phrases array and return true', () => {
       let expectedTopTenObj = {
-        maxTrackedPhrases: 10,
-        phrases: [
-          {"it has two": 1}
-        ]
+        maxPhraseCounts: 10,
+        totalPhrases: 1,
+        phrases: { 
+          "1": ["it has two"]
+         }
       }
       let phrase = "it has two";
       let count = 1;
@@ -67,17 +70,18 @@ describe('Check to add Phrase: ', () => {
   describe('If TopPhrases obj is not empty but not at max', () => {
     it('should add the phrase with count as obj and return true', () => {
       let expectedTopTenObj = {
-        maxTrackedPhrases: 10,
-        phrases: [
-          {"it has two": 1},
-          {"two well-thought-out sentences": 1}
-        ]
+        maxPhraseCounts: 10,
+        totalPhrases: 2,
+        phrases: {
+          "1": ["it has two"],
+          "2": ["two well-thought-out sentences"]
+        }
       }
       let phrase = "it has two";
       let count = 1;
 
       let phrase2 = "two well-thought-out sentences";
-      let count2 = 1;
+      let count2 = 2;
       
       let actualTopTenObj = new TopPhrases(10);
       let added = actualTopTenObj.checkToAddPhrase(phrase, count);
@@ -92,11 +96,12 @@ describe('Check to add Phrase: ', () => {
   describe('If TopPhrases obj is full and new phrase count is higher than only one existing count', () => {
     it('should replace phrase with lowest count as obj in array and return true', () => {
       let expectedTopTenObj = {
-        maxTrackedPhrases: 2,
-        phrases: [
-          {"not one but": 2},
-          {"two well-thought-out sentences": 3}
-        ]
+        maxPhraseCounts: 2,
+        totalPhrases: 2,
+        phrases: { 
+          "2": ["not one but"],
+          "3": ["two well-thought-out sentences"] 
+        }
       }
       let phrase = "it has two";
       let count = 1;

@@ -1,14 +1,15 @@
 /* 
   Assumptions:
-  - Does not hanlde ties for now
-  - Removes first phrase with lower number, 
-    ie. if two phrases have a count of 3 and the new phrase has a count of 4, new phrase will replace first
+  - The priority with phrases that have the same length is unknown
+    - Therefore, in order to preserve data, if there is a tie in top ten counts, all phrases in the tied count will be returned
+    - Yes, this means >10 phrases can be returned
 */
 
 class TopPhrases {
   constructor(int){
-    this.maxTrackedPhrases = int ? int : 10;
-    this.phrases = [];
+    this.maxPhraseCounts = int ? int : 10;
+    this.totalPhrases = 0;
+    this.phrases = {};
   }
 
   checkToAddPhrase(phrase, count) {
@@ -17,33 +18,25 @@ class TopPhrases {
         return false;
       }
     
-    let phrasesObj = {};
-    phrasesObj[phrase] = count;
-
-
-    if(this.maxTrackedPhrases > this.phrases.length) {
-      this.phrases.push(phrasesObj);
+    // If phrases object has not reached max count capacity, add new phrase without checking existing counts
+    if(this.maxPhraseCounts > Object.keys(this.phrases).length) {
+      if(this.phrases.hasOwnProperty(count)) {
+        this.phrases[count].push(phrase);
+      } else {
+        this.phrases[count] = [phrase];
+      }
+      this.totalPhrases++;
       return true;
     }
-
+      
     let updated = false;
 
     return updated;
   }
+
+  replacePhrase(phrase, count) {
+
+  }
 };
 
 module.exports = TopPhrases;
-
-    // for(var p in this.phrases) {
-    //   console.log("P:", p, this.phrases[p])
-    //   if(count < this.phrases[p]) {
-    //     newPhrasesState[p] = this.phrases[p];
-    //     console.log("Stay", newPhrasesState)
-    //   } 
-    //   if(count > this.phrases[p]) {
-    //     newPhrasesState[phrase] = count;
-    //     updated = true;
-    //     console.log("Change", newPhrasesState)
-    //     break;
-    //   }
-    // }
