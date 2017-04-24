@@ -85,5 +85,6 @@ addPhraseToDictionary = (dictionary, phrase) => {
 module.exports = { 
   stringToSentenceArray, 
   checkSentenceForPhrases,
-  addPhraseToDictionary  
+  addPhraseToDictionary,
+  dictionary 
 };
