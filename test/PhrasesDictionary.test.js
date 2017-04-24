@@ -6,20 +6,16 @@ var expectedPhraseArrays = require('./expectedPhraseArrays.json');
   Part 1 - Find Phrases and store in dictionary
 */
 describe('String to sentence array', () => {
-  it('should return an empty array if given an empty or undefined string', () => {
+  it('should return undefined if given an empty or undefined string', () => {
     let string = "";
     let string2;
-    let expectedResult = [];
 
     let myDictionary = new PhrasesDictionary();
-    let actualResult = myDictionary.stringToSentenceArray(string);
-    let actualResult2 = myDictionary.stringToSentenceArray(string2);
+    let actualResult = myDictionary.getSentencesFromDocument(string);
+    let actualResult2 = myDictionary.getSentencesFromDocument(string2);
 
-    expect(actualResult).to.be.an('array');
-    expect(expectedResult).to.deep.equal(actualResult);
-
-    expect(actualResult2).to.be.an('array');
-    expect(expectedResult).to.deep.equal(actualResult2);
+    expect(actualResult).to.be.undefined;
+    expect(actualResult2).to.be.undefined;
   });
 
   it('should separate a string into an array of sentences on (. ! ? ;)', () => {
@@ -27,7 +23,7 @@ describe('String to sentence array', () => {
     let expectedResult = ["This is a well-thought-out string", "It has two sentences", "No wait", "Make that 3 sentences", "or is it 4 sentences and a question"];
 
     let myDictionary = new PhrasesDictionary();
-    let actualResult = myDictionary.stringToSentenceArray(string);
+    let actualResult = myDictionary.getSentencesFromDocument(string);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -38,7 +34,7 @@ describe('String to sentence array', () => {
     let expectedResult = ["This is a well-thought-out string", "It has two sentences not one but two sentences although short", "No wait", "Make that 3 sentences", "or is it 4 sentences and a question"];
 
     let myDictionary = new PhrasesDictionary();
-    let actualResult = myDictionary.stringToSentenceArray(string);
+    let actualResult = myDictionary.getSentencesFromDocument(string);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -49,7 +45,7 @@ describe('String to sentence array', () => {
     let expectedResult = ["This is a well-thought-out string", "It has two sentences not one but two sentences", "No wait", "Make that 3 sentences", "or is it 4 sentences and a question"];
 
     let myDictionary = new PhrasesDictionary();
-    let actualResult = myDictionary.stringToSentenceArray(string);
+    let actualResult = myDictionary.getSentencesFromDocument(string);
 
     expect(actualResult).to.be.an('array');
     expect(expectedResult).to.deep.equal(actualResult);
@@ -62,43 +58,35 @@ describe('Loop over sentence array', () => {
     let expectedResult = expectedPhraseArrays.arrayOfPhrasesArray;
 
     let myDictionary = new PhrasesDictionary();
-    let actualResult = myDictionary.loopOverSentenceArray(sentenceArray);
-    console.log(actualResult);
+    console.log("LoopTest", sentenceArray, myDictionary.getPhrasesFromSentences(sentenceArray))
+    let actualResult = myDictionary.getPhrasesFromSentences(sentenceArray);
 
     expect(expectedResult).to.deep.equal(actualResult);
   })
 })
 
 describe('Check sentence for pharases', () => {
-  it('should return an empty array if given an empty or undefined string', () => {
+  it('should return undefined if given an empty or undefined string', () => {
     let string = "";
     let string2;
-    let expectedResult = [];
 
     let myDictionary = new PhrasesDictionary();
     let actualResult = myDictionary.checkSentenceForPhrases(string, 3);
     let actualResult2 = myDictionary.checkSentenceForPhrases(string2, 3);
 
-    expect(actualResult).to.be.an('array');
-    expect(expectedResult).to.deep.equal(actualResult);
-
-    expect(actualResult2).to.be.an('array');
-    expect(expectedResult).to.deep.equal(actualResult2);
+    expect(actualResult).to.be.undefined;
+    expect(actualResult2).to.be.undefined;
   });
 
   it('should return an empty array if given a phraseLength less than 0 or greater than number of words', () => {
     let string = "It has two well-thought-out sentences not one but two well-thought-out sentences";
-    let expectedResult = [];
 
     let myDictionary = new PhrasesDictionary();
     let actualResult = myDictionary.checkSentenceForPhrases(string, -1);
     let actualResult2 = myDictionary.checkSentenceForPhrases(string, 100);
 
-    expect(actualResult).to.be.an('array');
-    expect(expectedResult).to.deep.equal(actualResult);
-
-    expect(actualResult2).to.be.an('array');
-    expect(expectedResult).to.deep.equal(actualResult2);
+    expect(actualResult).to.be.undefined;
+    expect(actualResult2).to.be.undefined;
   });
 
   it('should return the sentence as an array if given a phraseLength equal to number of words', () => {
@@ -130,7 +118,6 @@ describe('Check sentence for pharases', () => {
 describe('Loop over a phrase array', () => {
   it('should loop over an array of phrases and send them to the dictionary function', () => {
     let arrayOfPhrases = expectedPhraseArrays[3];
-    console.log("Teasting array", arrayOfPhrases.length)
 
     let expectedDictionary = {
       "it has two": 1, 
@@ -145,7 +132,7 @@ describe('Loop over a phrase array', () => {
 
     let myDictionary = new PhrasesDictionary();
     myDictionary.dictionary = {};
-    myDictionary.loopOverPhraseArray(arrayOfPhrases);
+    myDictionary.buildPhraseDictionary(arrayOfPhrases);
     console.log("Dict", myDictionary, "dict", myDictionary.dictionary)
 
     expect(myDictionary.dictionary).to.deep.equal(expectedDictionary);

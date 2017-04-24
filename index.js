@@ -6,9 +6,9 @@ var PhrasesDictionary = require('./PhrasesDictionary.js');
   Run Program function
 */
 let runProgram = () => {
-  let myDictionary = new PhrasesDictionary(myDocument.content);
+  let myDictionary = new PhrasesDictionary(myDocument.content, 3, 10);
 
-  console.log(myDictionary);
+  // console.log(myDictionary);
   // Part 2 - Find Top 10
   
 }

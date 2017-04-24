@@ -10,32 +10,18 @@
     "sentenceArray": ["This is a well-thought-out string", "No wait", "Make that 3 well-thought-out sentences"],
     "arrayOfPhrasesArray": 
       [
-        [
-          "This is a",
-          "is a well-thought-out",
-          "a well-thought-out string"
-        ],
-        [],
-        [
-          "This is a well-thought-out",
-          "is a well-thought-out string"
-        ],
-        [],
-        [
-          "This is a well-thought-out string"
-        ],
-        [
-          "Make that 3",
-          "that 3 well-thought-out",
-          "3 well-thought-out sentences"
-        ],
-        [
-          "Make that 3 well-thought-out",
-          "that 3 well-thought-out sentences"
-        ],
-        [
-          "Make that 3 well-thought-out sentences"
-        ]
+        "This is a",
+        "is a well-thought-out",
+        "a well-thought-out string",
+        "Make that 3",
+        "that 3 well-thought-out",
+        "3 well-thought-out sentences",
+        "This is a well-thought-out",
+        "is a well-thought-out string",
+        "Make that 3 well-thought-out",
+        "that 3 well-thought-out sentences",
+        "This is a well-thought-out string",
+        "Make that 3 well-thought-out sentences"
       ],
     "dictionaryObj": {
       "this is a": 1,
