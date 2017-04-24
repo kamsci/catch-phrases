@@ -20,3 +20,9 @@ Given a string representing a document, this app returns the top 10 most frequen
 - Hyphenated words are counted as 1 word. ie. "state-of-the-art"
 - The priority between multiple phrases with the same count is unknown; therefore, in order to preserve data, if there is a tie in the top ten counts, all phrases with the same count will be returned
     - This means >10 phrases can be returned
+- I was unsure if I should combine counts when determining if a phrase is a subset of a larger phrase, so at this poing I am keeping the original count of the larger phrase
+
+#### TO DO
+- Refactor TopPhrases.getTopTenArrayOfPhrases() function to re-calculate top tep after subsets are removed
+- Add Unit Tests for TopPhrases class
+- ...I'm sure there is more :)

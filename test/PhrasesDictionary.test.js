@@ -3,7 +3,7 @@ var PhrasesDictionary = require('../PhrasesDictionary.js');
 var expectedPhraseArrays = require('./expectedPhraseArrays.json');
 
 /* 
-  Part 1 - Find Phrases and store in dictionary
+  Test for PhrasesDictionary class
 */
 describe('String to sentence array', () => {
   it('should return undefined if given an empty or undefined string', () => {
@@ -131,11 +131,11 @@ describe('Loop over a phrase array', () => {
     }
 
     let myDictionary = new PhrasesDictionary();
-    myDictionary.dictionary = {};
+    myDictionary.phraseObj = {};
     myDictionary.buildPhraseDictionary(arrayOfPhrases);
-    console.log("Dict", myDictionary, "dict", myDictionary.dictionary)
+    console.log("Dict", myDictionary, "dict", myDictionary.phraseObj)
 
-    expect(myDictionary.dictionary).to.deep.equal(expectedDictionary);
+    expect(myDictionary.phraseObj).to.deep.equal(expectedDictionary);
   })
 });
 
@@ -147,12 +147,12 @@ describe('Adding a phrase to a dictionary', () => {
 
     
     let myDictionary = new PhrasesDictionary();
-    myDictionary.dictionary = {};
+    myDictionary.phraseObj = {};
 
     myDictionary.addPhraseToDictionary(phrase);
     myDictionary.addPhraseToDictionary(phrase2);
 
-    expect(myDictionary.dictionary).to.deep.equal(expectedDictionary);
+    expect(myDictionary.phraseObj).to.deep.equal(expectedDictionary);
   });
 
   it('should check phrase and either add or increase count in dictionary', () => {
@@ -174,7 +174,7 @@ describe('Adding a phrase to a dictionary', () => {
     }
 
     let myDictionary = new PhrasesDictionary();
-    myDictionary.dictionary = {};
+    myDictionary.phraseObj = {};
 
     phraseArr.forEach(function(phrase) {
       myDictionary.addPhraseToDictionary(phrase);
@@ -183,7 +183,7 @@ describe('Adding a phrase to a dictionary', () => {
       myDictionary.addPhraseToDictionary(phrase);
     });
 
-    expect(myDictionary.dictionary).to.deep.equal(expectedDictionary);
+    expect(myDictionary.phraseObj).to.deep.equal(expectedDictionary);
   });
 
   it('should be case insensitive', () => {
@@ -194,11 +194,11 @@ describe('Adding a phrase to a dictionary', () => {
     }
 
     let myDictionary = new PhrasesDictionary();
-    myDictionary.dictionary = {};
+    myDictionary.phraseObj = {};
 
     myDictionary.addPhraseToDictionary(phraseCapitalized);
     myDictionary.addPhraseToDictionary(phraseLower);
 
-    expect(myDictionary.dictionary).to.deep.equal(expectedDictionary);
+    expect(myDictionary.phraseObj).to.deep.equal(expectedDictionary);
   });
 });

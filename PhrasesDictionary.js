@@ -1,47 +1,30 @@
+var TopPhrases = require('./TopPhrases.js');
 var myDocument = require('./document.json');
 
 class PhrasesDictionary {
   constructor(content, minPhraseCount, maxPhraseCount) {
-    this.dictionary = {};
+    this.phraseObj = {};
     this.minPhraseCount = minPhraseCount ? minPhraseCount : 3;
     this.maxPhraseCount = maxPhraseCount ? maxPhraseCount : 10;
+    this.topTenPhrases;
 
-    this.calculateTopPhrases(content);
+    this.getTopPhrases(content);
   }
 
   /*
-    Calculate
+    Kick off funtions to get top ten phrases
   */
-  calculateTopPhrases(content) {
+  getTopPhrases(content) {
     // Part 1 - Find Phrases and add to dictionary
     let sentenceArray = this.getSentencesFromDocument(content);
-    //console.log("sentenceArr", sentenceArray);
     let allPhrasesArray = this.getPhrasesFromSentences(sentenceArray);
-    //console.log("phraseArray", phraseArray);
     this.buildPhraseDictionary(allPhrasesArray);
-    //console.log("Dict", this.dictionary);
-
-    var dictArray = Array.from(this.dictionary);
-    console.log(dictArray);
 
     // Part 2 - Find Top 10 
-    let countArray = [];
-    for(var phrase in this.dictionary){
-      let count = this.dictionary[phrase];
-      countArray.push(count);
-    }
-    countArray = countArray.sort();
-    // console.log("Count", countArray[countArray.length-1]);
-    let TopCountArray = [];
-    for(var i = countArray[countArray.length - 1]; i > countArray.length - 11; i-- ) {
-      // console.log("CountArr", countArray[i]);
-      // for(var p in this.dictionary) {
-      //   if(this.dictionary[p] )
-      // }
-    }
-    
-
+    let TopTen = new TopPhrases(this.phraseObj);
+    this.topTenPhrases = TopTen.topPhrasesObj;
   }
+
 
   /*
     Split document string into an array of sentences with punctuation removed, except for hyphens in hyphenated words
@@ -89,7 +72,7 @@ class PhrasesDictionary {
 
     let wordArr = string.split(" ");
     if(wordArr.length < phraseLength) {return; }
-    
+
     let arrayOfPhrases = [];
 
     for(var i = 0; i < wordArr.length; i++) {
@@ -114,9 +97,7 @@ class PhrasesDictionary {
     if(allPhrasesArray === undefined || allPhrasesArray.length === 0) { return; }
 
     for(var i = 0; i < allPhrasesArray.length; i++) {
-      // console.log("EnterPhrase[i][k]", allPhrasesArray[i][k]);
       this.addPhraseToDictionary(allPhrasesArray[i]);
-      // console.log("PhraseLoopArray" + i, allPhrasesArray[i])
     }
   }
 
@@ -127,13 +108,12 @@ class PhrasesDictionary {
     if(phrase === undefined || phrase === "") { return; }
 
     phrase = phrase.toLowerCase();
-    if(this.dictionary.hasOwnProperty(phrase)){
-      this.dictionary[phrase] += 1;
+    if(this.phraseObj.hasOwnProperty(phrase)){
+      this.phraseObj[phrase] += 1;
     } else {
-      this.dictionary[phrase] = 1;
+      this.phraseObj[phrase] = 1;
     };
   };
 }
-
 
 module.exports = PhrasesDictionary;
