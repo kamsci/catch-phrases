@@ -1,11 +1,25 @@
 {
   "name": "catch-phrases",
   "version": "1.0.0",
-  "description": "catch top 10 phrases",
+  "description": "Catch the top 10 phrases",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "NODE_ENV=test node_modules/mocha/bin/mocha",
+    "console": "node console"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamsci/catch-phrases.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kamsci/catch-phrases/issues"
+  },
+  "homepage": "https://github.com/kamsci/catch-phrases#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
 }
