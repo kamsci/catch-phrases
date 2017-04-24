@@ -48,7 +48,7 @@ describe('Check to add Phrase: ', () => {
   });
 
   describe('If TopPhrases obj is empty,', () => {
-    it('should add the phrase with count as obj to phrases array and return true', () => {
+    it('should add the count key with phrase as value array to phrases array and return true', () => {
       let expectedTopTenObj = {
         maxPhraseCounts: 10,
         totalPhrases: 1,
@@ -68,36 +68,69 @@ describe('Check to add Phrase: ', () => {
   });
 
   describe('If TopPhrases obj is not empty but not at max', () => {
-    it('should add the phrase with count as obj and return true', () => {
-      let expectedTopTenObj = {
-        maxPhraseCounts: 10,
-        totalPhrases: 2,
-        phrases: {
-          "1": ["it has two"],
-          "2": ["two well-thought-out sentences"]
+    describe('and new phrase count is unique', () => {
+      it('should add the count key with phrase as value array and return true', () => {
+        let expectedTopTenObj = {
+          maxPhraseCounts: 10,
+          totalPhrases: 2,
+          phrases: {
+            "1": ["it has two"],
+            "2": ["two well-thought-out sentences"]
+          }
         }
-      }
-      let phrase = "it has two";
-      let count = 1;
+        let phrase = "it has two";
+        let count = 1;
 
-      let phrase2 = "two well-thought-out sentences";
-      let count2 = 2;
-      
-      let actualTopTenObj = new TopPhrases(10);
-      let added = actualTopTenObj.checkToAddPhrase(phrase, count);
-      let added2 = actualTopTenObj.checkToAddPhrase(phrase2, count2);
+        let phrase2 = "two well-thought-out sentences";
+        let count2 = 2;
+        
+        let actualTopTenObj = new TopPhrases(10);
+        let added = actualTopTenObj.checkToAddPhrase(phrase, count);
+        let added2 = actualTopTenObj.checkToAddPhrase(phrase2, count2);
 
-      expect(actualTopTenObj).to.deep.equal(expectedTopTenObj);
-      expect(added).to.be.true;
-      expect(added2).to.be.true;
+        expect(actualTopTenObj).to.deep.equal(expectedTopTenObj);
+        expect(added).to.be.true;
+        expect(added2).to.be.true;
+      });
+    });
+
+    describe('and new phrase count is a repeat - not unique', () => {
+      it('should find matching count key, add phrase to array and return true', () => {
+        let expectedTopTenObj = {
+          maxPhraseCounts: 10,
+          totalPhrases: 3,
+          phrases: {
+            "1": ["it has two"],
+            "2": ["two well-thought-out sentences", "not one but"]
+          }
+        }
+        let phrase = "it has two";
+        let count = 1;
+
+        let phrase2 = "two well-thought-out sentences";
+        let count2 = 2;
+
+        let phrase3 = "not one but";
+        let count3 = 2;
+        
+        let actualTopTenObj = new TopPhrases(10);
+        let added = actualTopTenObj.checkToAddPhrase(phrase, count);
+        let added2 = actualTopTenObj.checkToAddPhrase(phrase2, count2);
+        let added3 = actualTopTenObj.checkToAddPhrase(phrase3, count3);
+
+        expect(actualTopTenObj).to.deep.equal(expectedTopTenObj);
+        expect(added).to.be.true;
+        expect(added2).to.be.true;
+        expect(added3).to.be.true;
+      });
     });
   });
 
-  describe('If TopPhrases obj is full and new phrase count is higher than only one existing count', () => {
+  describe('If TopPhrases obj is full and new phrase count unique and higher than an exisitng count', () => {
     it('should replace phrase with lowest count as obj in array and return true', () => {
       let expectedTopTenObj = {
         maxPhraseCounts: 2,
-        totalPhrases: 2,
+        totalPhrases: 3,
         phrases: { 
           "2": ["not one but"],
           "3": ["two well-thought-out sentences"] 
