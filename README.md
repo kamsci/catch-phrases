@@ -9,8 +9,8 @@ Given a string representing a document, this app returns the top 10 most frequen
     - Run 'npm install'
 
 This is a console application, so the output will appear in your console or terminal window
-    - Run 'npm start' to see output in console
-    - Run 'npm test' to execute existing unit tests (using mocha/chai)
+ - Run 'npm start' to see output in console
+ - Run 'npm test' to execute existing unit tests (using mocha/chai)
 
 #### Assumptions
 - Document content is limited to alphanumeric and basic punctuation; no urls, emails, line breaks, html, etc.
