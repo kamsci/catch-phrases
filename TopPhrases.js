@@ -9,16 +9,18 @@
 class TopPhrases {
   constructor(int){
     this.maxPhraseCounts = int ? int : 10;
-    this.totalPhrases = 0;
     this.phrases = {};
   }
 
+  /*
+    Add phrase if it should be added, return true if added or false if not
+  */
   addedPhrase(phrase, count) {
     if(phrase === "" || phrase === undefined
       || count < 1 || count === undefined) {
         return false;
       }
-
+      console.log("Count", count)
     let didUpdate = false;
     // Quantity of phrases count has not reached maxPhraseCounts
     if(this.maxPhraseCounts > Object.keys(this.phrases).length) {
@@ -28,23 +30,25 @@ class TopPhrases {
       } else {
         this.phrases[count] = [phrase];
       }
-      // Update total phrases
-      this.totalPhrases++; 
-      console.log("Total: ", this.totalPhrases);
       didUpdate = true;
-    } 
+    }
     // Quantity of phrases has reached maxPhraseCounts, replace a key if count > minimum key
     else {
-      didUpdate = this.tryReplacePhrase(phrase, count, this.totalPhrases);
+      didUpdate = this.tryReplacePhrase(phrase, count);
     }
     console.log("CheckDidUpdate", didUpdate);
+    console.log("newTop", this)
+    console.log("---------------------------");
     return didUpdate;
   }
 
-  tryReplacePhrase(phrase, count, totalPhrases) {
+  /*
+    HELPER: Add phrase if count > min, return true if added or false if not
+  */
+  tryReplacePhrase(phrase, count) {
     let updated = false;
     let min = this.findMinCount();
-    console.log("TotalInReplace: ", totalPhrases);
+    console.log("count vs min: ", count, min, count <  min);
 
     // Return without updating if count is less than current min
     if (count <  min) { return updated; }
@@ -56,23 +60,21 @@ class TopPhrases {
       // Find minimum key and replace with new key,value (count, phrase)
       if(countKey === min) {
         newPhraseState[count] = [phrase];
-        updated = true;
-
-        // Update totalPhrases
-        this.updatePhraseCount(totalPhrases, this.phrases[countKey].length);     
+        updated = true;   
       } 
       else {
         newPhraseState[countKey] = this.phrases[countKey];
       }
     }
     this.phrases = newPhraseState;
-    console.log("newTop", this)
-    console.log("newTotal:", this.totalPhrases)
     return updated;
   }
 
+  /*
+    HELPER: Find current min count key in phrases obj
+  */
   findMinCount() {
-    if(this.totalPhrases = 0) { return 0; }
+    // if(this. = 0) { return 0; }
 
     let min = Number.MAX_SAFE_INTEGER;
     for(var countKey in this.phrases) {
@@ -81,11 +83,6 @@ class TopPhrases {
       }
     }
     return min;
-  }
-
-  updatePhraseCount(total, remove) {
-    console.log("TotalUpdate: ", total);
-    this.totalPhrases = (total - remove) + 1;
   }
 };
 
