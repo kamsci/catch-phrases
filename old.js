@@ -106,6 +106,27 @@ describe('Check sentence for pharases', () => {
 
 });
 
+describe('Loop over a phrase array', () => {
+  it('should loop over an array of phrases and send them to the dictionary function', () => {
+    let arrayOfPhrases1 = expectedPhraseArrays["3"];
+
+    let expectedDictionary = {
+      "It has two": 1, 
+      "has two well-thought-out": 1, 
+      "two well-thought-out sentences": 2, 
+      "well-thought-out sentences not": 1, 
+      "sentences not one": 1, 
+      "not one but": 1, 
+      "one but two": 1, 
+      "but two well-thought-out": 1 
+    }
+    let actualDictionary = {};
+    Phrases.loopOverPhraseArray(actualDictionary, arrayOfPhrases1);
+
+    expect(actualDictionary).to.deep.equal(expectedDictionary);
+  })
+});
+
 describe('Adding a phrase to a dictionary', () => {
   it('should NOT add an empty string if given an empty string', () => {
     let phrase = "";
@@ -154,3 +175,6 @@ describe('Adding a phrase to a dictionary', () => {
     expect(actualDictionary).to.deep.equal(expectedDictionary);
   });
 });
+describe('Run program', () => {
+  it('will ')
+})

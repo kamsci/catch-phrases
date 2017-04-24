@@ -1,11 +1,3 @@
-/* 
-  Assumptions:
-  - The priority with phrases that have the same length is unknown
-    - Therefore, in order to preserve data, if there is a tie in top ten counts, all phrases in the tied count will be returned
-    - This means >10 phrases can be returned
-  - Currently, this class is only used to add new phrases, not to remove
-*/
-
 class TopPhrases {
   constructor(int){
     this.maxPhraseCounts = int ? int : 10;
