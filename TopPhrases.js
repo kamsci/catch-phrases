@@ -1,81 +1,73 @@
 class TopPhrases {
-  constructor(phraseObj, numberOfPhrases) {
-    this.phraseObj = phraseObj ? phraseObj : {};
-    this.numberOfPhrases = numberOfPhrases ? numberOfPhrases : 10;
-    this.topPhrasesArray = [];
-    this.sortedPhraseArray;
-
-    this.determineTopPhrases();
-  }
   /*
-    Kick off
+    Main function to call and get top list of phrases and counts
   */
-  determineTopPhrases() {
-    this.sortedPhraseArray = this.turnPhraseObjIntoSortedArray();
-    this.getTopArrayOfPhrases(this.sortedPhraseArray);
+  static determineTopPhrases(phraseObj, numberOfPhrases) {
+    let sortedPhraseArray = this.turnPhraseObjIntoSortedArray(phraseObj);
+    console.log("sortedPhraseArray", sortedPhraseArray)
+    let sortedPhrasesSubsetsRemoved = this.checkAndRemoveSubsets(sortedPhraseArray)
+    console.log("sortedPhrasesSubsetsRemoved", sortedPhrasesSubsetsRemoved)
+    let topPhrasesArray = this.getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved, numberOfPhrases);
+    console.log("topPhrasesArray", topPhrasesArray)
+
+    return topPhrasesArray;
   }
   /*
     Turn the phraseObject into an Array sorted by count desc
   */
-  turnPhraseObjIntoSortedArray() {
-    if (this.phraseObj === undefined || Object.keys(this.phraseObj).length === 0) { return; }
+  static turnPhraseObjIntoSortedArray(phraseObj) {
+    if (phraseObj === undefined || Object.keys(phraseObj).length === 0) { return; }
 
     let sortedPhraseArray = [];
-    for (var phrase in this.phraseObj) {
-      sortedPhraseArray.push([phrase, this.phraseObj[phrase]]);
+    for (var phrase in phraseObj) {
+      sortedPhraseArray.push([phrase, phraseObj[phrase]]);
     }
     sortedPhraseArray.sort(function (a, b) {
       return b[1] - a[1];
     });
+
     return sortedPhraseArray;
   }
   /*
     Loop over sorted array of phrases and pull top ten that are not subsets of each other
   */
-  getTopArrayOfPhrases(sortedPhraseArray) {
-    if (sortedPhraseArray === undefined || sortedPhraseArray.length === 0) { return; }
+  static getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved, numberOfPhrases) {
+    if (sortedPhrasesSubsetsRemoved === undefined || sortedPhrasesSubsetsRemoved.length === 0) { return; }
 
-    // this.topPhrasesArray = [];
-    for (var i = 0; i < this.numberOfPhrases; i++) {
-      if (i > sortedPhraseArray.length - 1) { return; }
-      console.log("Phrase", sortedPhraseArray[i][0], typeof sortedPhraseArray[i][0] !== 'string')
-      if (this.checkAndRemoveSubsets(sortedPhraseArray[i][0]) === true) {
-        console.log("Check True");
-        this.topPhrasesArray.push(sortedPhraseArray[i]);
-        console.log(sortedPhraseArray[i][0], "AddToTP", this.topPhrasesArray);
-      }
+    topPhrasesArray = [];
+    for (var i = 0; i < numberOfPhrases; i++) {
+      if (i > sortedPhrasesSubsetsRemoved.length - 1) { return; }
 
+      topPhrasesArray.push(sortedPhrasesSubsetsRemoved[i]);
+      console.log(sortedPhrasesSubsetsRemoved[i][0], "AddToTP", topPhrasesArray);
     }
-    let word = "when they walk through"
-    console.log("Word Includes", word.includes("when they walk"));
-    console.log("After topPhrases", this.topPhrasesArray)
+    console.log("After topPhrases", topPhrasesArray)
+    return topPhrasesArray;
   }
   /*
     Return false - phrase not added - if new phrase exists as a subset of any phrases in the existing topPhraseArray
     Return true if one or more existing phrases are a subset of the new phrase; Remove subsets
   */
-  checkAndRemoveSubsets(newPhrase) {
-    if (newPhrase === undefined || this.topPhrasesArray === undefined || newPhrase === "" || typeof newPhrase !== 'string') {
-      return;
-    }
+  static checkAndRemoveSubsets(sortedPhraseArray) {
+    if (sortedPhraseArray === undefined || sortedPhraseArray.length === 0) { return; }
 
-    for (var i = 0; i < this.topPhrasesArray.length; i++) {
-      if (this.topPhrasesArray[i] !== newPhrase) {
+    let sortedPhrasesSubsetsRemoved = [];
 
-        // Do not add if newPhrase is a subset of an existing phrase
-        let phraseIsSubset = this.topPhrasesArray[i][0].includes(newPhrase);
-        console.log("Phrase is subset", phraseIsSubset)
-        if (phraseIsSubset === true) { return false; }
-
-        // Remove phrase if it is a subset of newPhrase
-        let existingSubset = newPhrase.includes(this.topPhrasesArray[i]);
-        if (existingSubset === true) {
-          this.topPhrasesArray.splice(i, 1)
-          i--;
+    for (var i = 0; i < sortedPhraseArray.length; i++) {
+      let outerPhrase = sortedPhraseArray[i][0];
+      for (var k = 0; k < sortedPhraseArray.length; k++) {
+        let innerPhrase = sortedPhraseArray[k][0];
+        if (outerPhrase !== innerPhrase) {
+          let isSubstring = outerPhrase.includes(innerPhrase);
+          // console.log("  ", isSubstring)
+          if (isSubstring) {
+            sortedPhraseArray.splice(k, 1);
+            k--;
+          }
         }
       }
     }
-    return true;
+    return sortedPhrasesSubsetsRemoved;
   }
 
   // removeSubsets(topPhrases) {
@@ -102,6 +94,22 @@ class TopPhrases {
 
   //   return topPhrases;
   // }
+  /*
+    Check and remove subset from entire phrase object
+  */
+  // removeSubsetsEntireArray(sortedPhraseArray) {
+  //   if (sortedPhraseArray === undefined || sortedPhraseArray.length === 0) { return; }
+
+  //   for (var i = 0; i < sortedPhraseArray.length; i++) {
+  //     if (this.checkAndRemoveSubsets(sortedPhraseArray[i][0]) === true) {
+  //       console.log("Check True");
+  //       this.sortedPhrasesSubsetsRemoved.push(sortedPhraseArray[i]);
+  //       console.log(sortedPhraseArray[i][0], "AddToSP", this.topPhrasortedPhrasesSubsetsRemovedsesArray);
+  //     }
+  //   }
+  // }
+
+
 }
 
 module.exports = TopPhrases;
