@@ -23,7 +23,7 @@ class TopPhrases {
     sortedPhraseArray.sort(function (a, b) {
       return b[1] - a[1];
     });
-
+    
     return sortedPhraseArray;
   }
 
@@ -38,7 +38,6 @@ class TopPhrases {
       if (i > sortedPhrasesSubsetsRemoved.length - 1) { return; }
 
       topPhrasesArray.push(sortedPhrasesSubsetsRemoved[i]);
-
     }
     return topPhrasesArray;
   }
