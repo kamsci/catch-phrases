@@ -1,5 +1,5 @@
 class TopPhrases {
-  constructor(phraseObj){
+  constructor(phraseObj) {
     this.phraseObj = phraseObj;
     this.topPhrasesObj;
 
@@ -16,20 +16,20 @@ class TopPhrases {
 
   turnPhraseObjIntoSortedArray() {
     let countArray = [];
-    for(var phrase in this.phraseObj){
+    for (var phrase in this.phraseObj) {
       let count = this.phraseObj[phrase];
       countArray.push(count);
     }
     let sortedCountArray = countArray.sort();
     return sortedCountArray;
   }
-  
+
   getHighestCountsArray(sortedCountArray) {
     let topCountsArray = [];
     let idx = sortedCountArray.length - 1;
 
-    while(topCountsArray.length < 10 && idx >= 0) {
-      if(sortedCountArray[idx] === sortedCountArray[idx - 1]) {
+    while (topCountsArray.length < 10 && idx >= 0) {
+      if (sortedCountArray[idx] === sortedCountArray[idx - 1]) {
         idx--;
       } else {
         topCountsArray.push(sortedCountArray[idx]);
@@ -41,10 +41,10 @@ class TopPhrases {
 
   getTopTenArrayOfPhrases(topCountsArray) {
     let topPhrases = [];
-    for(var i = 0; i < topCountsArray.length; i++) {
-      if(topPhrases.length < 10) {
-        for(var phrase in this.phraseObj){
-          if(this.phraseObj[phrase] === topCountsArray[i]){
+    for (var i = 0; i < topCountsArray.length; i++) {
+      if (topPhrases.length < 10) {
+        for (var phrase in this.phraseObj) {
+          if (this.phraseObj[phrase] === topCountsArray[i]) {
             topPhrases.push([phrase, this.phraseObj[phrase]]);
           }
         }
@@ -58,14 +58,16 @@ class TopPhrases {
   }
 
   removeSubsets(topPhrases) {
-    for(var k = 0; k < topPhrases.length; k++) {
+    console.log("topPhrases", topPhrases)
+    for (var k = 0; k < topPhrases.length; k++) {
       let outerPhrase = topPhrases[k][0];
-      for(var j = 0; j < topPhrases.length; j++) {
+      for (var j = 0; j < topPhrases.length; j++) {
         let innerPhrase = topPhrases[j][0];
-        if(outerPhrase !== innerPhrase) {
+        if (outerPhrase !== innerPhrase) {
           let isSubstring = outerPhrase.includes(innerPhrase);
-          if(isSubstring) {
+          if (isSubstring) {
             topPhrases.splice(j, 1);
+            k--;
           }
         }
       }
