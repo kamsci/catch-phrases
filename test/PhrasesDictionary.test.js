@@ -58,7 +58,6 @@ describe('Loop over sentence array', () => {
     let expectedResult = expectedPhraseArrays.arrayOfPhrasesArray;
 
     let myDictionary = new PhrasesDictionary();
-    console.log("LoopTest", sentenceArray, myDictionary.getPhrasesFromSentences(sentenceArray))
     let actualResult = myDictionary.getPhrasesFromSentences(sentenceArray);
 
     expect(expectedResult).to.deep.equal(actualResult);
@@ -133,7 +132,6 @@ describe('Loop over a phrase array', () => {
     let myDictionary = new PhrasesDictionary();
     myDictionary.phraseObj = {};
     myDictionary.buildPhraseDictionary(arrayOfPhrases);
-    console.log("Dict", myDictionary, "dict", myDictionary.phraseObj)
 
     expect(myDictionary.phraseObj).to.deep.equal(expectedDictionary);
   })

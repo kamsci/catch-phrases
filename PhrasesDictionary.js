@@ -21,8 +21,8 @@ class PhrasesDictionary {
     this.buildPhraseDictionary(allPhrasesArray);
 
     // Part 2 - Find Top 10 
-    let TopTen = new TopPhrases(this.phraseObj);
-    this.topTenPhrases = TopTen.topPhrasesObj;
+    let TopTen = new TopPhrases(this.phraseObj, 10);
+    this.topTenPhrases = TopTen.topPhrasesArray;
   }
 
 
