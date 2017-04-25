@@ -16,7 +16,7 @@ class TopPhrases {
   }
 
   turnPhraseObjIntoSortedArray() {
-    if(this.phraseObj === undefined || this.phraseObj === {}) { return; }
+    if(this.phraseObj === undefined || Object.keys(this.phraseObj).length === 0) { console.log("PO:", this.phraseObj); return; }
     
     let sortedPhraseArray = [];
     for(var phrase in this.phraseObj) {
@@ -49,17 +49,17 @@ class TopPhrases {
 
     for(var k = 0; k < topPhrases.length; k++) {
       let outerPhrase = topPhrases[k][0];
-      console.log("Outer", outerPhrase)
+      // console.log("Outer", outerPhrase)
       for(var j = 0; j < topPhrases.length; j++) {
         let innerPhrase = topPhrases[j][0];
-        console.log("  Inner", innerPhrase)
+        // console.log("  Inner", innerPhrase)
         if(outerPhrase !== innerPhrase) {
           let isSubstring = outerPhrase.includes(innerPhrase);
-          console.log("  ", isSubstring)
+          // console.log("  ", isSubstring)
           if(isSubstring) {
             topPhrases.splice(j, 1);
             j--;
-            console.log("  AfterSplice",j , topPhrases)
+            // console.log("  AfterSplice",j , topPhrases)
           }
         }
       }
