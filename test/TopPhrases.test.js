@@ -6,7 +6,7 @@ var expectedPhraseArrays = require('./expectedPhraseArrays.json');
   Coming Soon! - Tests for TopPhrases class
 */
 describe('TopPhrases object,', () => {
-  afterEach(function(){
+  afterEach(function () {
     // clear topPhrase object
     topPhrases = null;
   });
@@ -34,134 +34,146 @@ describe('TopPhrases object,', () => {
     expect(expectedNumberOfPhrases).to.deep.equal(actualNumberOfPhrases);
   });
 
-describe('Turn phrase into sorted Array', () => {
-  afterEach(function(){
-    // clear topPhrase object
-    topPhrases = null;
-  });
-
-  it('should return undefined when no phraseObj', () => { 
-    let topPhrases = new TopPhrases();
-    let actualResult = topPhrases.turnPhraseObjIntoSortedArray();
-
-    expect(actualResult).to.be.undefined;
-  });
-
-  it('should create a sortedPhraseArray when passed a phraseObj', () => {
-    let expectedResult = expectedPhraseArrays.sortedPhraseArray;
-    
-    let topPhrases = new TopPhrases(expectedPhraseArrays.phraseObj, 10);
-    let actualResult = topPhrases.turnPhraseObjIntoSortedArray();
-
-    expect(actualResult).to.be.an('array');
-    expect(expectedResult).to.deep.equal(actualResult);
-  });
-
-  it('should return phrase in array when phraseObj is a single obj', () => { 
-    let phraseObj = { "this is a well-thought-out string": 1 };
-    let expectedResult = [["this is a well-thought-out string", 1]];
-
-    let topPhrases = new TopPhrases(phraseObj, 10);
-    let actualResult = topPhrases.turnPhraseObjIntoSortedArray();
-
-    expect(expectedResult).to.deep.equal(actualResult);
-  });
-});
-  describe('Remove subsets', () => {
-    afterEach(function(){
+  describe('Turn phrase into sorted Array', () => {
+    afterEach(function () {
       // clear topPhrase object
       topPhrases = null;
     });
-    it('should return undefined when empty or undefined sorted array is passed', () => { 
-      let topPhrases1 = [];
-      let topPhrases2 = undefined;
+
+    it('should return undefined when no phraseObj', () => {
+      let topPhrases = new TopPhrases();
+      let actualResult = topPhrases.turnPhraseObjIntoSortedArray();
+
+      expect(actualResult).to.be.undefined;
+    });
+
+    it('should create a sortedPhraseArray when passed a phraseObj', () => {
+      let expectedResult = expectedPhraseArrays.sortedPhraseArray1;
+
+      let topPhrases = new TopPhrases(expectedPhraseArrays.phraseObj, 10);
+      let actualResult = topPhrases.turnPhraseObjIntoSortedArray();
+
+      expect(actualResult).to.be.an('array');
+      expect(expectedResult).to.deep.equal(actualResult);
+    });
+
+    it('should return phrase in array when phraseObj is a single obj', () => {
+      let phraseObj = { "this is a well-thought-out string": 1 };
+      let expectedResult = [["this is a well-thought-out string", 1]];
+
+      let topPhrases = new TopPhrases(phraseObj, 10);
+      let actualResult = topPhrases.turnPhraseObjIntoSortedArray();
+
+      expect(expectedResult).to.deep.equal(actualResult);
+    });
+  });
+  describe('Check and remove subsets', () => {
+    afterEach(function () {
+      // clear topPhrase object
+      topPhrases = null;
+    });
+    it('should return undefined if newPhrase is undefined, empty, or not a string', () => {
+      let phrase1 = "";
+      let phrase2 = undefined;
+      let phrase3 = [];
 
       let topPhrases = new TopPhrases();
-      let actualResult1 = topPhrases.removeSubsets(topPhrases1);
-      let actualResult2 = topPhrases.getTopTenArrayOfPhrases(topPhrases2);
+      let actualResult1 = topPhrases.checkAndRemoveSubsets(phrase1);
+      let actualResult2 = topPhrases.checkAndRemoveSubsets(phrase2);
+      let actualResult3 = topPhrases.checkAndRemoveSubsets(phrase3);
 
       expect(actualResult1).to.be.undefined;
       expect(actualResult2).to.be.undefined;
+      expect(actualResult3).to.be.undefined;
     });
-    
+
     it('should remove a single subset', () => {
-      let topPhrasesArray = [
-        [ "this is a", 4 ],
-        [ "make that 3", 4 ],
-        [ "sentences and a well-thought-out string", 3 ],
-        [ "3 sentences and a well-thought-out", 3 ],
-        [ "3 sentences and", 3 ]
+      let expectedResult = [
+        ["this is a", 4],
+        ["make that 3", 4],
+        ["sentences and a well-thought-out string", 3],
+        ["3 sentences and a well-thought-out", 3]
       ];
 
-      let expectedResult = [
-        [ "this is a", 4 ],
-        [ "make that 3", 4 ],
-        [ "sentences and a well-thought-out string", 3 ],
-        [ "3 sentences and a well-thought-out", 3 ]
-      ]
-      
-      let topPhrases = new TopPhrases();
-      let actualResult = topPhrases.removeSubsets(topPhrasesArray);
-      console.log("Actual: ", actualResult)
+      let phraseObj = {
+        "this is a": 4,
+        "make that 3": 4,
+        "sentences and a well-thought-out string": 3,
+        "3 sentences and a well-thought-out": 3,
+        "3 sentences and": 3
+      };
+
+      let topPhrases = new TopPhrases(phraseObj, 5);
+
+      for (var phrase in phraseObj) {
+        topPhrases.checkAndRemoveSubsets(phrase);
+      }
+      let actualResult = topPhrases.topPhrasesArray;
 
       expect(actualResult).to.be.an('array');
       expect(actualResult).to.have.lengthOf(4)
       expect(expectedResult).to.deep.equal(actualResult);
     });
+
     it('should remove all subsets - 2', () => {
-      let topPhrasesArray = [
-        [ "this is a", 4 ],
-        [ "make that 3", 4 ],
-        [ "3 sentences and a well-thought-out string", 3 ],
-        [ "3 sentences and a well-thought-out", 3 ],
-        [ "3 sentences and", 3 ]
+      let expectedResult = [
+        ["this is a", 4],
+        ["make that 3", 4],
+        ["3 sentences and a well-thought-out string", 3]
       ];
 
-      let expectedResult = [
-        [ "this is a", 4 ],
-        [ "make that 3", 4 ],
-        [ "3 sentences and a well-thought-out string", 3 ]
-      ]
-      
-      let topPhrases = new TopPhrases();
-      let actualResult = topPhrases.removeSubsets(topPhrasesArray);
-      console.log("Actual: ", actualResult)
+      let phraseObj = {
+        "this is a": 4,
+        "make that 3": 4,
+        "3 sentences and a well-thought-out string": 3,
+        "3 sentences and a well-thought-out": 3,
+        "3 sentences and": 3
+      };
+
+      let topPhrases = new TopPhrases(phraseObj, 5);
+      for (var phrase in phraseObj) {
+        topPhrases.checkAndRemoveSubsets(phrase);
+      }
+      let actualResult = topPhrases.topPhrasesArray;
 
       expect(actualResult).to.be.an('array');
-      expect(actualResult).to.have.lengthOf(3)
+      expect(actualResult).to.have.lengthOf(3);
       expect(expectedResult).to.deep.equal(actualResult);
     });
   });
 
   describe('Get top ten array of phrases', () => {
-    afterEach(function(){
+    afterEach(function () {
       // clear topPhrase object
       topPhrases = null;
     });
-    it('should return undefined when empty or undefined sorted array is passed', () => { 
-      let sortedArray1 = [];
-      let sortedArray2 = undefined;
 
-      let topPhrases = new TopPhrases();
-      let actualResult1 = topPhrases.getTopTenArrayOfPhrases(sortedArray1);
-      let actualResult2 = topPhrases.getTopTenArrayOfPhrases(sortedArray2);
-
-      expect(actualResult1).to.be.undefined;
-      expect(actualResult2).to.be.undefined;
-    });
-    it('should return top NumberOfPhrases from sorted array', () => {
-      let sortedArray = expectedPhraseArrays.sortedPhraseArray;
-      let expectedResult = [ 
-        [ 'make that 3', 4 ],
-        [ 'sentences and a well-thought-out string', 3 ],
-        [ '3 sentences and a well-thought-out', 3 ],
-        [ 'that 3 sentences', 2],
-        [ 'this is a well-thought-out', 2 ] 
+    it('should return top NumberOfPhrases from a sorted array not containing subsets', () => {
+      let sortedArray = [
+        ["this is a well-thought-out string", 1],
+        ["make that 3 sentences", 1],
+        ["or is that 3 sentences and a well-thought-out string", 1]
       ];
 
+      let expectedResult = sortedArray;
+
       let topPhrases = new TopPhrases();
-      let actualResult = topPhrases.getTopTenArrayOfPhrases(sortedArray);
-      console.log("Actual: ", actualResult)
+      topPhrases.getTopTenArrayOfPhrases(sortedArray);
+      let actualResult = topPhrases.topPhrasesArray
+
+      expect(actualResult).to.be.an('array');
+      expect(actualResult).to.have.length.below(topPhrases.numberOfPhrases + 1)
+      expect(expectedResult).to.deep.equal(actualResult);
+    });
+
+    it('should update this.topPhrasesArray to be top ten with subsets removed', () => {
+      let sortedArray = expectedPhraseArrays.sortedPhraseArray1;
+      let expectedResult = expectedPhraseArrays.topTenArray1;
+
+      let topPhrases = new TopPhrases();
+      topPhrases.getTopTenArrayOfPhrases(sortedArray);
+      let actualResult = topPhrases.topPhrasesArray;
+      console.log("ActualTopTen", actualResult, topPhrases);
 
       expect(actualResult).to.be.an('array');
       expect(actualResult).to.have.length.below(topPhrases.numberOfPhrases + 1)
