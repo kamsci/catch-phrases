@@ -158,7 +158,7 @@ describe('TopPhrases object,', () => {
       let expectedResult = sortedArray;
 
       let topPhrases = new TopPhrases();
-      topPhrases.getTopTenArrayOfPhrases(sortedArray);
+      topPhrases.getTopArrayOfPhrases(sortedArray);
       let actualResult = topPhrases.topPhrasesArray
 
       expect(actualResult).to.be.an('array');
@@ -171,7 +171,7 @@ describe('TopPhrases object,', () => {
       let expectedResult = expectedPhraseArrays.topTenArray1;
 
       let topPhrases = new TopPhrases();
-      topPhrases.getTopTenArrayOfPhrases(sortedArray);
+      topPhrases.getTopArrayOfPhrases(sortedArray);
       let actualResult = topPhrases.topPhrasesArray;
       console.log("ActualTopTen", actualResult, topPhrases);
 

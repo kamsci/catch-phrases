@@ -12,7 +12,7 @@ class TopPhrases {
   */
   determineTopPhrases() {
     this.sortedPhraseArray = this.turnPhraseObjIntoSortedArray();
-    this.getTopTenArrayOfPhrases(this.sortedPhraseArray);
+    this.getTopArrayOfPhrases(this.sortedPhraseArray);
   }
   /*
     Turn the phraseObject into an Array sorted by count desc
@@ -32,7 +32,7 @@ class TopPhrases {
   /*
     Loop over sorted array of phrases and pull top ten that are not subsets of each other
   */
-  getTopTenArrayOfPhrases(sortedPhraseArray) {
+  getTopArrayOfPhrases(sortedPhraseArray) {
     if (sortedPhraseArray === undefined || sortedPhraseArray.length === 0) { return; }
 
     // this.topPhrasesArray = [];
