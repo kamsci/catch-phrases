@@ -7,9 +7,9 @@ var PhrasesDictionary = require('./PhrasesDictionary.js');
 */
 let runProgram = () => {
   let myDictionary = new PhrasesDictionary(myDocument.content, 3, 10);
-  
-  console.log("---------- Top Ten(ish) Phrases ----------")
-  console.log(myDictionary.topTenPhrases); 
+
+  console.log("---------- Top Ten Phrases ----------")
+  console.log(myDictionary.topTenPhrases);
   console.log("-------------------------------------------")
 }
 

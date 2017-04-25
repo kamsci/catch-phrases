@@ -48,62 +48,24 @@ describe('TopPhrases object,', () => {
       expect(actualResult2).to.be.undefined;
     });
 
-    it('should remove all subsets and return a new sorted phrase array', () => {
+    it('result < 10: should remove all subsets and return a new sorted phrase array', () => {
       let expectedResult = expectedPhraseArrays.removedAllSubsets1;
 
       let sortedPhraseArray = expectedPhraseArrays.sortedPhraseArray1;
       let actualResult = TopPhrases.checkAndRemoveSubsets(sortedPhraseArray);
-      // console.log("Actual", actualResult)
-      // console.log("Original", sortedPhraseArray)
 
       expect(actualResult).to.be.an('array');
       expect(actualResult).to.have.lengthOf(3);
       expect(expectedResult).to.deep.equal(actualResult);
     });
 
-    it('should remove all subsets and return a new array', () => {
-      let expectedResult = [
-        ['better because our front-end operations team is there to serve', 1],
-        ['the customer sees a cluttered', 1],
-        ['customer sees a cluttered madhouse', 1],
-        ['they will not want to', 1],
-        ['will not want to shop', 1],
-        ['want our customer to see', 1],
-        ['a warm greeting goes a', 1],
-        ['our customers what a totally', 1],
-        ['totally amazing company feels like', 1],
-        ['do you know what an', 1],
-        ['collected to run our front-end operations', 1],
-        ['to run our front-end operations team', 1]
-      ];
+    it('result > 10: should remove all subsets and return a new sorted phrase array', () => {
+      let expectedResult = expectedPhraseArrays.removedAllSubsets2;
 
-      let sortedPhraseArray = [
-
-        ['better because our front-end operations team is there to serve', 1],
-        ['customer sees a cluttered', 1],
-        ['they will not want', 1], // outer i 3, inner k 0; new i 2, k 0
-        ['will not want to', 1],
-        ['not want to shop', 1],
-        ['a warm greeting goes', 1],
-        ['do you know what', 1],
-        ['run our front-end operations team', 1],
-        ['the customer sees a cluttered', 1],
-        ['customer sees a cluttered madhouse', 1],
-        ['they will not want to', 1],
-        ['will not want to shop', 1],
-        ['want our customer to see', 1],
-        ['a warm greeting goes a', 1],
-        ['our customers what a totally', 1],
-        ['totally amazing company feels like', 1],
-        ['do you know what an', 1],
-        ['collected to run our front-end operations', 1],
-        ['to run our front-end operations team', 1]
-      ];
+      let sortedPhraseArray = expectedPhraseArrays.sortedPhraseArray2;
 
 
       let actualResult = TopPhrases.checkAndRemoveSubsets(sortedPhraseArray);
-      // console.log("Actual", actualResult)
-      // console.log("Original", sortedPhraseArray)
 
       expect(actualResult).to.be.an('array');
       expect(expectedResult).to.deep.equal(actualResult);
