@@ -1,65 +1,406 @@
 {
-    "3": ["It has two", "has two well-thought-out", "two well-thought-out sentences", "well-thought-out sentences not", "sentences not one", "not one but", "one but two", "but two well-thought-out", "two well-thought-out sentences"],
-    "4": ["It has two well-thought-out", "has two well-thought-out sentences", "two well-thought-out sentences not", "well-thought-out sentences not one", "sentences not one but", "not one but two", "one but two well-thought-out", "but two well-thought-out sentences"],
-    "5": ["It has two well-thought-out sentences", "has two well-thought-out sentences not", "two well-thought-out sentences not one", "well-thought-out sentences not one but", "sentences not one but two", "not one but two well-thought-out", "one but two well-thought-out sentences"],
-    "6": ["It has two well-thought-out sentences not", "has two well-thought-out sentences not one", "two well-thought-out sentences not one but", "well-thought-out sentences not one but two", "sentences not one but two well-thought-out", "not one but two well-thought-out sentences"],
-    "7": ["It has two well-thought-out sentences not one", "has two well-thought-out sentences not one but", "two well-thought-out sentences not one but two", "well-thought-out sentences not one but two well-thought-out", "sentences not one but two well-thought-out sentences"],
-    "8": ["It has two well-thought-out sentences not one but", "has two well-thought-out sentences not one but two", "two well-thought-out sentences not one but two well-thought-out", "well-thought-out sentences not one but two well-thought-out sentences"],
-    "9": ["It has two well-thought-out sentences not one but two", "has two well-thought-out sentences not one but two well-thought-out", "two well-thought-out sentences not one but two well-thought-out sentences"],
-    "10": ["It has two well-thought-out sentences not one but two well-thought-out", "has two well-thought-out sentences not one but two well-thought-out sentences"],
-    "sentenceArray": ["This is a well-thought-out string", "No wait", "Make that 3 well-thought-out sentences"],
-    "arrayOfPhrasesArray": 
-      [
-        "This is a",
-        "is a well-thought-out",
-        "a well-thought-out string",
-        "Make that 3",
-        "that 3 well-thought-out",
-        "3 well-thought-out sentences",
-        "This is a well-thought-out",
-        "is a well-thought-out string",
-        "Make that 3 well-thought-out",
-        "that 3 well-thought-out sentences",
-        "This is a well-thought-out string",
-        "Make that 3 well-thought-out sentences"
-      ],
-    "dictionaryObj": {
-      "this is a": 1,
-      "is a well-thought-out": 1,
-      "a well-thought-out string": 2,
-      "this is a well-thought-out": 1,
-      "is a well-thought-out string": 1,
-      "this is a well-thought-out string": 1,
-      "make that 3": 1,
-      "that 3 sentences": 2,
-      "make that 3 sentences": 1,
-      "or is that": 1,
-      "is that 3": 1,
-      "3 sentences and": 1,
-      "sentences and a": 1,
-      "and a well-thought-out": 1,
-      "or is that 3": 1,
-      "is that 3 sentences": 1,
-      "that 3 sentences and": 1,
-      "3 sentences and a": 1,
-      "sentences and a well-thought-out": 1,
-      "and a well-thought-out string": 1,
-      "or is that 3 sentences": 1,
-      "is that 3 sentences and": 1,
-      "that 3 sentences and a": 1,
-      "3 sentences and a well-thought-out": 1,
-      "sentences and a well-thought-out string": 1,
-
-      "or is that 3 sentences and": 1,
-      "is that 3 sentences and a": 1,
-      "that 3 sentences and a well-thought-out": 1,
-      "3 sentences and a well-thought-out string": 1,
-
-      "or is that 3 sentences and a": 1,
-      "is that 3 sentences and a well-thought-out": 1,
-      "that 3 sentences and a well-thought-out string": 1,
-      "or is that 3 sentences and a well-thought-out": 1,
-      "is that 3 sentences and a well-thought-out string": 1,
-      "or is that 3 sentences and a well-thought-out string": 1
-    }
+  "3": [
+    "It has two",
+    "has two well-thought-out",
+    "two well-thought-out sentences",
+    "well-thought-out sentences not",
+    "sentences not one",
+    "not one but",
+    "one but two",
+    "but two well-thought-out",
+    "two well-thought-out sentences"
+  ],
+  "4": [
+    "It has two well-thought-out",
+    "has two well-thought-out sentences",
+    "two well-thought-out sentences not",
+    "well-thought-out sentences not one",
+    "sentences not one but",
+    "not one but two",
+    "one but two well-thought-out",
+    "but two well-thought-out sentences"
+  ],
+  "5": [
+    "It has two well-thought-out sentences",
+    "has two well-thought-out sentences not",
+    "two well-thought-out sentences not one",
+    "well-thought-out sentences not one but",
+    "sentences not one but two",
+    "not one but two well-thought-out",
+    "one but two well-thought-out sentences"
+  ],
+  "6": [
+    "It has two well-thought-out sentences not",
+    "has two well-thought-out sentences not one",
+    "two well-thought-out sentences not one but",
+    "well-thought-out sentences not one but two",
+    "sentences not one but two well-thought-out",
+    "not one but two well-thought-out sentences"
+  ],
+  "7": [
+    "It has two well-thought-out sentences not one",
+    "has two well-thought-out sentences not one but",
+    "two well-thought-out sentences not one but two",
+    "well-thought-out sentences not one but two well-thought-out",
+    "sentences not one but two well-thought-out sentences"
+  ],
+  "8": [
+    "It has two well-thought-out sentences not one but",
+    "has two well-thought-out sentences not one but two",
+    "two well-thought-out sentences not one but two well-thought-out",
+    "well-thought-out sentences not one but two well-thought-out sentences"
+  ],
+  "9": [
+    "It has two well-thought-out sentences not one but two",
+    "has two well-thought-out sentences not one but two well-thought-out",
+    "two well-thought-out sentences not one but two well-thought-out sentences"
+  ],
+  "10": [
+    "It has two well-thought-out sentences not one but two well-thought-out",
+    "has two well-thought-out sentences not one but two well-thought-out sentences"
+  ],
+  "sentenceArray": [
+    "This is a well-thought-out string",
+    "No wait",
+    "Make that 3 well-thought-out sentences"
+  ],
+  "arrayOfPhrasesArray": [
+    "This is a",
+    "is a well-thought-out",
+    "a well-thought-out string",
+    "Make that 3",
+    "that 3 well-thought-out",
+    "3 well-thought-out sentences",
+    "This is a well-thought-out",
+    "is a well-thought-out string",
+    "Make that 3 well-thought-out",
+    "that 3 well-thought-out sentences",
+    "This is a well-thought-out string",
+    "Make that 3 well-thought-out sentences"
+  ],
+  "phraseObj": {
+    "this is a": 4,
+    "is a well-thought-out": 2,
+    "a well-thought-out string": 2,
+    "this is a well-thought-out": 2,
+    "is a well-thought-out string": 1,
+    "this is a well-thought-out string": 1,
+    "make that 3": 4,
+    "that 3 sentences": 2,
+    "make that 3 sentences": 1,
+    "or is that": 1,
+    "is that 3": 1,
+    "3 sentences and": 3,
+    "sentences and a": 1,
+    "and a well-thought-out": 2,
+    "or is that 3": 1,
+    "is that 3 sentences": 1,
+    "that 3 sentences and": 1,
+    "3 sentences and a": 3,
+    "sentences and a well-thought-out": 1,
+    "and a well-thought-out string": 1,
+    "or is that 3 sentences": 1,
+    "is that 3 sentences and": 1,
+    "that 3 sentences and a": 1,
+    "3 sentences and a well-thought-out": 3,
+    "sentences and a well-thought-out string": 3,
+    "or is that 3 sentences and": 1,
+    "is that 3 sentences and a": 1,
+    "that 3 sentences and a well-thought-out": 1,
+    "3 sentences and a well-thought-out string": 1,
+    "or is that 3 sentences and a": 1,
+    "is that 3 sentences and a well-thought-out": 1,
+    "that 3 sentences and a well-thought-out string": 1,
+    "or is that 3 sentences and a well-thought-out": 1,
+    "is that 3 sentences and a well-thought-out string": 1,
+    "or is that 3 sentences and a well-thought-out string": 1
+  },
+  "removedAllSubsets1": [
+    [
+      "this is a well-thought-out string",
+      1
+    ],
+    [
+      "make that 3 sentences",
+      1
+    ],
+    [
+      "or is that 3 sentences and a well-thought-out string",
+      1
+    ]
+  ],
+  "removedAllSubsets2": [
+    [
+      "better because our front-end operations team is there to serve",
+      1
+    ],
+    [
+      "the customer sees a cluttered",
+      1
+    ],
+    [
+      "customer sees a cluttered madhouse",
+      1
+    ],
+    [
+      "they will not want to",
+      1
+    ],
+    [
+      "will not want to shop",
+      1
+    ],
+    [
+      "want our customer to see",
+      1
+    ],
+    [
+      "a warm greeting goes a",
+      1
+    ],
+    [
+      "our customers what a totally",
+      1
+    ],
+    [
+      "totally amazing company feels like",
+      1
+    ],
+    [
+      "do you know what an",
+      1
+    ],
+    [
+      "collected to run our front-end operations",
+      1
+    ],
+    [
+      "to run our front-end operations team",
+      1
+    ]
+  ],
+  "sortedPhraseArray1": [
+    [
+      "this is a",
+      4
+    ],
+    [
+      "make that 3",
+      4
+    ],
+    [
+      "sentences and a well-thought-out string",
+      3
+    ],
+    [
+      "3 sentences and a well-thought-out",
+      3
+    ],
+    [
+      "3 sentences and",
+      3
+    ],
+    [
+      "3 sentences and a",
+      3
+    ],
+    [
+      "and a well-thought-out",
+      2
+    ],
+    [
+      "is a well-thought-out",
+      2
+    ],
+    [
+      "that 3 sentences",
+      2
+    ],
+    [
+      "this is a well-thought-out",
+      2
+    ],
+    [
+      "a well-thought-out string",
+      2
+    ],
+    [
+      "or is that 3 sentences",
+      1
+    ],
+    [
+      "sentences and a",
+      1
+    ],
+    [
+      "this is a well-thought-out string",
+      1
+    ],
+    [
+      "or is that 3",
+      1
+    ],
+    [
+      "is that 3 sentences",
+      1
+    ],
+    [
+      "that 3 sentences and",
+      1
+    ],
+    [
+      "make that 3 sentences",
+      1
+    ],
+    [
+      "sentences and a well-thought-out",
+      1
+    ],
+    [
+      "and a well-thought-out string",
+      1
+    ],
+    [
+      "or is that",
+      1
+    ],
+    [
+      "is that 3 sentences and",
+      1
+    ],
+    [
+      "that 3 sentences and a",
+      1
+    ],
+    [
+      "is that 3",
+      1
+    ],
+    [
+      "is a well-thought-out string",
+      1
+    ],
+    [
+      "or is that 3 sentences and",
+      1
+    ],
+    [
+      "is that 3 sentences and a",
+      1
+    ],
+    [
+      "that 3 sentences and a well-thought-out",
+      1
+    ],
+    [
+      "3 sentences and a well-thought-out string",
+      1
+    ],
+    [
+      "or is that 3 sentences and a",
+      1
+    ],
+    [
+      "is that 3 sentences and a well-thought-out",
+      1
+    ],
+    [
+      "that 3 sentences and a well-thought-out string",
+      1
+    ],
+    [
+      "or is that 3 sentences and a well-thought-out",
+      1
+    ],
+    [
+      "is that 3 sentences and a well-thought-out string",
+      1
+    ],
+    [
+      "or is that 3 sentences and a well-thought-out string",
+      1
+    ]
+  ],
+  "sortedPhraseArray2": [
+    [
+      "they will not",
+      1
+    ],
+    [
+      "better because our front-end operations team is there to serve",
+      1
+    ],
+    [
+      "customer sees a cluttered",
+      1
+    ],
+    [
+      "they will not want",
+      1
+    ],
+    [
+      "will not want to",
+      1
+    ],
+    [
+      "not want to shop",
+      1
+    ],
+    [
+      "a warm greeting goes",
+      1
+    ],
+    [
+      "do you know what",
+      1
+    ],
+    [
+      "run our front-end operations team",
+      1
+    ],
+    [
+      "the customer sees a cluttered",
+      1
+    ],
+    [
+      "customer sees a cluttered madhouse",
+      1
+    ],
+    [
+      "they will not want to",
+      1
+    ],
+    [
+      "will not want to shop",
+      1
+    ],
+    [
+      "want our customer to see",
+      1
+    ],
+    [
+      "a warm greeting goes a",
+      1
+    ],
+    [
+      "our customers what a totally",
+      1
+    ],
+    [
+      "totally amazing company feels like",
+      1
+    ],
+    [
+      "do you know what an",
+      1
+    ],
+    [
+      "collected to run our front-end operations",
+      1
+    ],
+    [
+      "to run our front-end operations team",
+      1
+    ]
+  ]
 }

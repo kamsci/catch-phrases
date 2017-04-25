@@ -26,11 +26,10 @@ This is a console application, so the output will appear in your console or term
     - dashes in non-hyphenated words ( - ) 
 - Phrases do not dependent on removed punctuation. ie. "calm cool" is the same as "calm, cool" 
 - Hyphenated words are counted as 1 word. ie. "state-of-the-art"
-- The priority between multiple phrases with the same count is unknown; therefore, in order to preserve data, if there is a tie in the top ten counts, all phrases with the same count will be returned
-    - This means >10 phrases can be returned
+- At this time, additional phrases past the top ten with the same count as those in the top ten are not listed.
 - I was unsure if I should combine counts when determining if a phrase is a subset of a larger phrase, so at this point I am keeping the original count of the larger phrase
 
 #### TO DO
-- Refactor TopPhrases.getTopTenArrayOfPhrases() function to re-calculate top ten after subsets are removed
-- Add Unit Tests for TopPhrases class
-- ...I'm sure there is more :)
+- Potentially  include all phrases that have a count that is in the top 10 OR identify some priority of inclusion
+- Add more unit tests
+- ...other cool stuff :)

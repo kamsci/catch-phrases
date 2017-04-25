@@ -21,8 +21,7 @@ class PhrasesDictionary {
     this.buildPhraseDictionary(allPhrasesArray);
 
     // Part 2 - Find Top 10 
-    let TopTen = new TopPhrases(this.phraseObj);
-    this.topTenPhrases = TopTen.topPhrasesObj;
+    this.topTenPhrases = TopPhrases.determineTopPhrases(this.phraseObj, 10);
   }
 
 
@@ -30,13 +29,13 @@ class PhrasesDictionary {
     Split document string into an array of sentences with punctuation removed, except for hyphens in hyphenated words
   */
   getSentencesFromDocument(string) {
-    if(string === undefined || string === "") { return; }
+    if (string === undefined || string === "") { return; }
 
     string = string.replace(/:|,|\(|\)|\s-|-\s/g, "");
 
     // split string into array on sentence ending punctuation, (! . ; ?)
     let sentenceArray = string.split(/!\s*|;\s*|\?\s*|\.\s*/g);
-    if(sentenceArray[sentenceArray.length - 1].length === 0) {
+    if (sentenceArray[sentenceArray.length - 1].length === 0) {
       sentenceArray.pop();
     };
 
@@ -46,16 +45,16 @@ class PhrasesDictionary {
   /*
     Loop over each sentence to set all possible phrases then add to allPhrasesArray
   */
-    getPhrasesFromSentences(sentenceArray) {
-    if(sentenceArray === undefined || sentenceArray.length === 0) { return; }
+  getPhrasesFromSentences(sentenceArray) {
+    if (sentenceArray === undefined || sentenceArray.length === 0) { return; }
 
     let phraseLength = this.minPhraseCount;
     let allPhrasesArray = [];
-    
-    while(phraseLength <= this.maxPhraseCount) {
-      for(var i = 0; i < sentenceArray.length; i++) {
+
+    while (phraseLength <= this.maxPhraseCount) {
+      for (var i = 0; i < sentenceArray.length; i++) {
         let sentencePhraseArray = this.checkSentenceForPhrases(sentenceArray[i], phraseLength);
-        if(sentencePhraseArray !== undefined && sentencePhraseArray.length > 0) { 
+        if (sentencePhraseArray !== undefined && sentencePhraseArray.length > 0) {
           allPhrasesArray = allPhrasesArray.concat(sentencePhraseArray);
         }
       }
@@ -68,22 +67,22 @@ class PhrasesDictionary {
     Take sentence and phraseLength variable and break into array of phrases as long as phraseLength
   */
   checkSentenceForPhrases(string, phraseLength) {
-    if(string === undefined || string === "" || phraseLength <= 0) { return; }
+    if (string === undefined || string === "" || phraseLength <= 0) { return; }
 
     let wordArr = string.split(" ");
-    if(wordArr.length < phraseLength) {return; }
+    if (wordArr.length < phraseLength) { return; }
 
     let arrayOfPhrases = [];
 
-    for(var i = 0; i < wordArr.length; i++) {
+    for (var i = 0; i < wordArr.length; i++) {
       let phraseArr = [];
-      for(var k = i; k < wordArr.length; k++) {
-        if(phraseArr.length < phraseLength){
+      for (var k = i; k < wordArr.length; k++) {
+        if (phraseArr.length < phraseLength) {
           phraseArr.push(wordArr[k]);
         };
       };
-      if(phraseArr.length === phraseLength) {
-        let phrase = phraseArr.join (" ");
+      if (phraseArr.length === phraseLength) {
+        let phrase = phraseArr.join(" ");
         arrayOfPhrases.push(phrase);
       };
     };
@@ -94,9 +93,9 @@ class PhrasesDictionary {
     Take array of phrases and performs AddToDictionary on each
   */
   buildPhraseDictionary(allPhrasesArray) {
-    if(allPhrasesArray === undefined || allPhrasesArray.length === 0) { return; }
+    if (allPhrasesArray === undefined || allPhrasesArray.length === 0) { return; }
 
-    for(var i = 0; i < allPhrasesArray.length; i++) {
+    for (var i = 0; i < allPhrasesArray.length; i++) {
       this.addPhraseToDictionary(allPhrasesArray[i]);
     }
   }
@@ -105,10 +104,10 @@ class PhrasesDictionary {
     Take phrase and add or increase count in dictionary
   */
   addPhraseToDictionary(phrase) {
-    if(phrase === undefined || phrase === "") { return; }
+    if (phrase === undefined || phrase === "") { return; }
 
     phrase = phrase.toLowerCase();
-    if(this.phraseObj.hasOwnProperty(phrase)){
+    if (this.phraseObj.hasOwnProperty(phrase)) {
       this.phraseObj[phrase] += 1;
     } else {
       this.phraseObj[phrase] = 1;
