@@ -4,7 +4,7 @@ class TopPhrases {
   */
   static determineTopPhrases(phraseObj, numberOfPhrases) {
     let sortedPhraseArray = this.turnPhraseObjIntoSortedArray(phraseObj);
-    console.log("sortedPhraseArray", sortedPhraseArray)
+    // console.log("sortedPhraseArray", sortedPhraseArray)
     let sortedPhrasesSubsetsRemoved = this.checkAndRemoveSubsets(sortedPhraseArray)
     console.log("sortedPhrasesSubsetsRemoved", sortedPhrasesSubsetsRemoved)
     let topPhrasesArray = this.getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved, numberOfPhrases);
@@ -34,14 +34,14 @@ class TopPhrases {
   static getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved, numberOfPhrases) {
     if (sortedPhrasesSubsetsRemoved === undefined || sortedPhrasesSubsetsRemoved.length === 0) { return; }
 
-    topPhrasesArray = [];
+    let topPhrasesArray = [];
     for (var i = 0; i < numberOfPhrases; i++) {
       if (i > sortedPhrasesSubsetsRemoved.length - 1) { return; }
 
       topPhrasesArray.push(sortedPhrasesSubsetsRemoved[i]);
-      console.log(sortedPhrasesSubsetsRemoved[i][0], "AddToTP", topPhrasesArray);
+      // console.log(sortedPhrasesSubsetsRemoved[i][0], "AddToTP", topPhrasesArray);
     }
-    console.log("After topPhrases", topPhrasesArray)
+    // console.log("After topPhrases", topPhrasesArray)
     return topPhrasesArray;
   }
   /*
@@ -51,41 +51,49 @@ class TopPhrases {
   static checkAndRemoveSubsets(sortedPhraseArray) {
     if (sortedPhraseArray === undefined || sortedPhraseArray.length === 0) { return; }
 
-    let sortedPhrasesSubsetsRemoved = [];
-
+    console.log("Original, length", sortedPhraseArray.length, sortedPhraseArray)
     for (var i = 0; i < sortedPhraseArray.length; i++) {
       let outerPhrase = sortedPhraseArray[i][0];
+      console.log("Outer", i, outerPhrase)
       for (var k = 0; k < sortedPhraseArray.length; k++) {
         let innerPhrase = sortedPhraseArray[k][0];
         if (outerPhrase !== innerPhrase) {
-          let isSubstring = outerPhrase.includes(innerPhrase);
-          // console.log("  ", isSubstring)
-          if (isSubstring) {
+          // console.log("  Inner", innerPhrase)
+          let isSubset = outerPhrase.match(innerPhrase);
+          // console.log("  ", outerPhrase.includes(innerPhrase))
+          if (isSubset) {
+            // console.log("Outer", outerPhrase)
+            console.log("  Index", k, i)
             sortedPhraseArray.splice(k, 1);
-            k--;
+            if (k > 0) { k--; };
+            if (i > k) { i--; }
+            console.log("K After", k)
+            // if (k === i) { i--; }
+            // console.log("  AfterSplice", k, sortedPhraseArray)
           }
         }
       }
     }
-    return sortedPhrasesSubsetsRemoved;
+    // console.log("Removed", sortedPhraseArray);
+    return sortedPhraseArray;
   }
 
   // removeSubsets(topPhrases) {
   //   if (topPhrases === undefined || topPhrases.length === 0) { return; }
   //   if (topPhrases.length === 1) { return topPhrases; }
 
-  //   for (var k = 0; k < topPhrases.length; k++) {
-  //     let outerPhrase = topPhrases[k][0];
+  //   for (var i = 0; i < topPhrases.length; i++) {
+  //     let outerPhrase = topPhrases[i][0];
   //     // console.log("Outer", outerPhrase)
-  //     for (var j = 0; j < topPhrases.length; j++) {
-  //       let innerPhrase = topPhrases[j][0];
+  //     for (var k = 0; k < topPhrases.length; k++) {
+  //       let innerPhrase = topPhrases[k][0];
   //       // console.log("  Inner", innerPhrase)
   //       if (outerPhrase !== innerPhrase) {
   //         let isSubstring = outerPhrase.includes(innerPhrase);
   //         // console.log("  ", isSubstring)
   //         if (isSubstring) {
-  //           topPhrases.splice(j, 1);
-  //           j--;
+  //           topPhrases.splice(k, 1);
+  //           k--;
   //           // console.log("  AfterSplice",j , topPhrases)
   //         }
   //       }

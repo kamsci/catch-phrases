@@ -115,6 +115,20 @@
     "is that 3 sentences and a well-thought-out string": 1,
     "or is that 3 sentences and a well-thought-out string": 1
   },
+  "removedAllSubsets1": [
+    [
+      "this is a well-thought-out string",
+      1
+    ],
+    [
+      "make that 3 sentences",
+      1
+    ],
+    [
+      "or is that 3 sentences and a well-thought-out string",
+      1
+    ]
+  ],
   "sortedPhraseArray1": [
     [
       "this is a",
@@ -250,20 +264,6 @@
     ],
     [
       "is that 3 sentences and a well-thought-out string",
-      1
-    ],
-    [
-      "or is that 3 sentences and a well-thought-out string",
-      1
-    ]
-  ],
-  "removedAllSubsets1": [
-    [
-      "this is a well-thought-out string",
-      1
-    ],
-    [
-      "make that 3 sentences",
       1
     ],
     [
