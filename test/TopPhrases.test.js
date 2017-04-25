@@ -133,28 +133,39 @@ describe('Turn phrase into sorted Array', () => {
     });
   });
 
-  // describe('Get top ten array of phrases', () => {
-  //   it('should return undefined when empty or undefined sorted array is passed', () => { 
-  //     let sortedArray1 = [];
-  //     let sortedArray2 = undefined;
+  describe('Get top ten array of phrases', () => {
+    afterEach(function(){
+      // clear topPhrase object
+      topPhrases = null;
+    });
+    it('should return undefined when empty or undefined sorted array is passed', () => { 
+      let sortedArray1 = [];
+      let sortedArray2 = undefined;
 
-  //     let topPhrases = new TopPhrases();
-  //     let actualResult1 = topPhrases.getTopTenArrayOfPhrases(sortedArray1);
-  //     let actualResult2 = topPhrases.getTopTenArrayOfPhrases(sortedArray2);
+      let topPhrases = new TopPhrases();
+      let actualResult1 = topPhrases.getTopTenArrayOfPhrases(sortedArray1);
+      let actualResult2 = topPhrases.getTopTenArrayOfPhrases(sortedArray2);
 
-  //     expect(actualResult1).to.be.undefined;
-  //     expect(actualResult2).to.be.undefined;
-  //   });
-  //   it('should return top NumberOfPhrases from sorted array', () => {
-  //     let sortedArray = expectedPhraseArrays.sortedPhraseArray;
-      
-  //     let topPhrases = new TopPhrases();
-  //     let actualResult = topPhrases.getTopTenArrayOfPhrases(sortedArray);
-  //     console.log("Actual: ", actualResult)
+      expect(actualResult1).to.be.undefined;
+      expect(actualResult2).to.be.undefined;
+    });
+    it('should return top NumberOfPhrases from sorted array', () => {
+      let sortedArray = expectedPhraseArrays.sortedPhraseArray;
+      let expectedResult = [ 
+        [ 'make that 3', 4 ],
+        [ 'sentences and a well-thought-out string', 3 ],
+        [ '3 sentences and a well-thought-out', 3 ],
+        [ 'that 3 sentences', 2],
+        [ 'this is a well-thought-out', 2 ] 
+      ];
 
-  //     expect(actualResult).to.be.an('array');
-  //     expect(actualResult).to.have.lengthOf(topPhrases.numberOfPhrases)
-  //     expect(expectedResult).to.deep.equal(actualResult);
-  //   });
-  // });
+      let topPhrases = new TopPhrases();
+      let actualResult = topPhrases.getTopTenArrayOfPhrases(sortedArray);
+      console.log("Actual: ", actualResult)
+
+      expect(actualResult).to.be.an('array');
+      expect(actualResult).to.have.length.below(topPhrases.numberOfPhrases + 1)
+      expect(expectedResult).to.deep.equal(actualResult);
+    });
+  });
 });
