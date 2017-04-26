@@ -23,7 +23,7 @@ class TopPhrases {
     sortedPhraseArray.sort(function (a, b) {
       return b[1] - a[1];
     });
-    
+
     return sortedPhraseArray;
   }
 
@@ -31,13 +31,18 @@ class TopPhrases {
     Take sortedPhraseArray - with subsets removed- and return top number of phrases
   */
   static getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved, numberOfPhrases) {
-    if (sortedPhrasesSubsetsRemoved === undefined || sortedPhrasesSubsetsRemoved.length === 0) { return; }
+    if (sortedPhrasesSubsetsRemoved === undefined || sortedPhrasesSubsetsRemoved.length === 0 || numberOfPhrases === undefined) { return; }
 
     let topPhrasesArray = [];
-    for (var i = 0; i < numberOfPhrases; i++) {
-      if (i > sortedPhrasesSubsetsRemoved.length - 1) { return; }
+    for (var i = 0; i < sortedPhrasesSubsetsRemoved.length; i++) {
+      if (topPhrasesArray.length >= numberOfPhrases) { break; }
 
       topPhrasesArray.push(sortedPhrasesSubsetsRemoved[i]);
+
+      while (i < sortedPhrasesSubsetsRemoved.length - 1 && sortedPhrasesSubsetsRemoved[i][1] === sortedPhrasesSubsetsRemoved[i + 1][1]) {
+        topPhrasesArray.push(sortedPhrasesSubsetsRemoved[i + 1]);
+        i++;
+      }
     }
     return topPhrasesArray;
   }

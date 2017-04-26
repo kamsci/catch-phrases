@@ -402,5 +402,123 @@
       "to run our front-end operations team",
       1
     ]
+  ],
+  "sortedPhrasesSubsetsRemoved1": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      13
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      10
+    ],
+    [
+      "fish are the best",
+      2
+    ],
+    [
+      "tomatoes are the best",
+      1
+    ]
+  ],
+  "topPhrasesArray1": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      13
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      10
+    ]
+  ],
+  "sortedPhrasesSubsetsRemoved2": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      14
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      12
+    ],
+    [
+      "fish are the best",
+      12
+    ],
+    [
+      "frogs are the best",
+      9
+    ],
+    [
+      "tomatoes are the best",
+      1
+    ]
+  ],
+  "topPhrasesArray2": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      14
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      12
+    ],
+    [
+      "fish are the best",
+      12
+    ]
+  ],
+  "sortedPhrasesSubsetsRemoved3": [
+    [
+      "cats are the best",
+      14
+    ]
   ]
 }
