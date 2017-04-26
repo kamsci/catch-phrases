@@ -179,6 +179,12 @@
       1
     ]
   ],
+  "removedAllSubsets3": [
+    [
+      "or is that 3 sentences and a well-thought-out string",
+      1
+    ]
+  ],
   "sortedPhraseArray1": [
     [
       "this is a",
@@ -401,6 +407,236 @@
     [
       "to run our front-end operations team",
       1
+    ]
+  ],
+  "sortedPhraseArray3": [
+    [
+      "sentences and a well-thought-out string",
+      3
+    ],
+    [
+      "3 sentences and a well-thought-out",
+      3
+    ],
+    [
+      "3 sentences and",
+      3
+    ],
+    [
+      "3 sentences and a",
+      3
+    ],
+    [
+      "and a well-thought-out",
+      2
+    ],
+    [
+      "that 3 sentences",
+      2
+    ],
+    [
+      "a well-thought-out string",
+      2
+    ],
+    [
+      "or is that 3 sentences",
+      1
+    ],
+    [
+      "sentences and a",
+      1
+    ],
+    [
+      "or is that 3",
+      1
+    ],
+    [
+      "is that 3 sentences",
+      1
+    ],
+    [
+      "that 3 sentences and",
+      1
+    ],
+    [
+      "sentences and a well-thought-out",
+      1
+    ],
+    [
+      "and a well-thought-out string",
+      1
+    ],
+    [
+      "or is that",
+      1
+    ],
+    [
+      "is that 3 sentences and",
+      1
+    ],
+    [
+      "that 3 sentences and a",
+      1
+    ],
+    [
+      "or is that 3 sentences and a well-thought-out string",
+      1
+    ]
+  ],
+  "sortedPhrasesSubsetsRemoved1": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      13
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      10
+    ],
+    [
+      "fish are the best",
+      2
+    ],
+    [
+      "tomatoes are the best",
+      1
+    ]
+  ],
+  "topPhrasesArray1": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      13
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      10
+    ]
+  ],
+  "sortedPhrasesSubsetsRemoved2": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      14
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      12
+    ],
+    [
+      "fish are the best",
+      12
+    ],
+    [
+      "frogs are the best",
+      9
+    ],
+    [
+      "tomatoes are the best",
+      1
+    ],
+    [
+      "sandpipers are the best",
+      1
+    ],
+    [
+      "blowfish are the best",
+      1
+    ]
+  ],
+  "topPhrasesArray2": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      14
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      12
+    ],
+    [
+      "fish are the best",
+      12
+    ]
+  ],
+  "topPhrasesArray2GreaterThanOne": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      14
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      12
+    ],
+    [
+      "fish are the best",
+      12
+    ],
+    [
+      "frogs are the best",
+      9
+    ]
+  ],
+  "sortedPhrasesSubsetsRemoved3": [
+    [
+      "cats are the best",
+      14
     ]
   ]
 }
