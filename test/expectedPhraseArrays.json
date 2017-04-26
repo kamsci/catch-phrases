@@ -567,6 +567,14 @@
     [
       "tomatoes are the best",
       1
+    ],
+    [
+      "sandpipers are the best",
+      1
+    ],
+    [
+      "blowfish are the best",
+      1
     ]
   ],
   "topPhrasesArray2": [
@@ -593,6 +601,36 @@
     [
       "fish are the best",
       12
+    ]
+  ],
+  "topPhrasesArray2GreaterThanOne": [
+    [
+      "cats are the best",
+      14
+    ],
+    [
+      "dogs are the best",
+      14
+    ],
+    [
+      "gohers are the best",
+      14
+    ],
+    [
+      "swans are the best",
+      12
+    ],
+    [
+      "snakes are the best",
+      12
+    ],
+    [
+      "fish are the best",
+      12
+    ],
+    [
+      "frogs are the best",
+      9
     ]
   ],
   "sortedPhrasesSubsetsRemoved3": [

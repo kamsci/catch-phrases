@@ -7,6 +7,7 @@ class PhrasesDictionary {
     this.minPhraseCount = minPhraseCount ? minPhraseCount : 3;
     this.maxPhraseCount = maxPhraseCount ? maxPhraseCount : 10;
     this.topTenPhrases;
+    this.topTenPhrasesNoSingles;
 
     this.getTopPhrases(content);
   }
@@ -20,8 +21,9 @@ class PhrasesDictionary {
     let allPhrasesArray = this.getPhrasesFromSentences(sentenceArray);
     this.buildPhraseDictionary(allPhrasesArray);
 
-    // Part 2 - Find Top 10 
-    this.topTenPhrases = TopPhrases.determineTopPhrases(this.phraseObj, 10);
+    // Part 2 - Find Top 10 including singles and 5 excluding singles
+    this.topTenPhrases = TopPhrases.determineTopPhrases(this.phraseObj, 10, true);
+    this.topTenPhrasesNoSingles = TopPhrases.determineTopPhrases(this.phraseObj, 5, false);
   }
 
 

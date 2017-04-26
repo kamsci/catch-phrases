@@ -53,7 +53,6 @@ describe('TopPhrases object,', () => {
 
       let sortedPhraseArray = expectedPhraseArrays.sortedPhraseArray3;
       let actualResult = TopPhrases.checkAndRemoveSubsets(sortedPhraseArray);
-      console.log("actual", actualResult)
 
       expect(actualResult).to.be.an('array');
       expect(actualResult).to.have.lengthOf(1);
@@ -83,9 +82,9 @@ describe('TopPhrases object,', () => {
       let numberOfPhrases2 = undefined;
 
 
-      let actualResult1 = TopPhrases.getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved1, numberOfPhrases1);
-      let actualResult2 = TopPhrases.getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved2, numberOfPhrases1);
-      let actualResult3 = TopPhrases.getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved3, numberOfPhrases2);
+      let actualResult1 = TopPhrases.getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved1, numberOfPhrases1, true);
+      let actualResult2 = TopPhrases.getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved2, numberOfPhrases1, true);
+      let actualResult3 = TopPhrases.getTopArrayOfPhrases(sortedPhrasesSubsetsRemoved3, numberOfPhrases2, true);
 
       expect(actualResult1).to.be.undefined;
       expect(actualResult2).to.be.undefined;
@@ -96,7 +95,7 @@ describe('TopPhrases object,', () => {
       let expectedResult = expectedPhraseArrays.topPhrasesArray1;
       let numberOfPhrases = 5;
 
-      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhrasesSubsetsRemoved1, numberOfPhrases);
+      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhrasesSubsetsRemoved1, numberOfPhrases, true);
 
       expect(actualResult).to.be.an('array');
       expect(expectedResult).to.deep.equal(actualResult);
@@ -106,7 +105,7 @@ describe('TopPhrases object,', () => {
       let expectedResult = expectedPhraseArrays.topPhrasesArray2;
       let numberOfPhrases = 5;
 
-      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhrasesSubsetsRemoved2, numberOfPhrases);
+      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhrasesSubsetsRemoved2, numberOfPhrases, true);
 
       expect(actualResult).to.be.an('array');
       expect(expectedResult).to.deep.equal(actualResult);
@@ -116,7 +115,7 @@ describe('TopPhrases object,', () => {
       let expectedResult = expectedPhraseArrays.sortedPhrasesSubsetsRemoved3;
       let numberOfPhrases = 5;
 
-      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhrasesSubsetsRemoved3, numberOfPhrases);
+      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhrasesSubsetsRemoved3, numberOfPhrases, true);
 
       expect(actualResult).to.be.an('array');
       expect(expectedResult).to.deep.equal(actualResult);
@@ -127,11 +126,47 @@ describe('TopPhrases object,', () => {
       let expectedResult = expectedPhraseArrays.removedAllSubsets2;
       let numberOfPhrases = 5;
 
-      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.removedAllSubsets2, numberOfPhrases);
+      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.removedAllSubsets2, numberOfPhrases, true);
+
+      expect(actualResult).to.be.an('array');
+      expect(expectedResult).to.deep.equal(actualResult);
+    });
+
+    it('should not return any phrases with a single count if the includeSinglesBool is false', () => {
+      let expectedResult = expectedPhraseArrays.topPhrasesArray2GreaterThanOne;
+      let numberOfPhrases = 10;
+
+      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhrasesSubsetsRemoved2, numberOfPhrases, false);
+
+      expect(actualResult).to.be.an('array');
+      expect(expectedResult).to.deep.equal(actualResult);
+    });
+
+    it('should return an empty array if the includeSinglesBool is false and all counts are 1', () => {
+      let expectedResult = [];
+      let numberOfPhrases = 10;
+      console.log("Expected", expectedResult)
+      let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhraseArray2, numberOfPhrases, false);
+      console.log("Actual", actualResult)
 
       expect(actualResult).to.be.an('array');
       expect(expectedResult).to.deep.equal(actualResult);
     });
   });
 
+  describe('Determine top phrases', () => {
+    it('should return undefined if phraseObj or numberOfPhrases is undefined or empty', () => {
+      let phraseObj1 = undefined;
+      let phraseObj2 = [];
+      let numberOfPhrases = undefined;
+
+      let actualResult1 = TopPhrases.determineTopPhrases(phraseObj1, 10)
+      let actualResult2 = TopPhrases.determineTopPhrases(phraseObj1, 10);
+      let actualResult3 = TopPhrases.determineTopPhrases(expectedPhraseArrays.phraseObj, numberOfPhrases);
+
+      expect(actualResult1).to.be.undefined;
+      expect(actualResult2).to.be.undefined;
+      expect(actualResult3).to.be.undefined;
+    });
+  });
 });
