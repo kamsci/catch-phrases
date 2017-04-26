@@ -48,18 +48,19 @@ describe('TopPhrases object,', () => {
       expect(actualResult2).to.be.undefined;
     });
 
-    it('result < 10: should remove all subsets and return a new sorted phrase array', () => {
-      let expectedResult = expectedPhraseArrays.removedAllSubsets1;
+    it('result is 1: should remove all subsets and return a new sorted phrase array with 1 phrase', () => {
+      let expectedResult = expectedPhraseArrays.removedAllSubsets3;
 
-      let sortedPhraseArray = expectedPhraseArrays.sortedPhraseArray1;
+      let sortedPhraseArray = expectedPhraseArrays.sortedPhraseArray3;
       let actualResult = TopPhrases.checkAndRemoveSubsets(sortedPhraseArray);
+      console.log("actual", actualResult)
 
       expect(actualResult).to.be.an('array');
-      expect(actualResult).to.have.lengthOf(3);
+      expect(actualResult).to.have.lengthOf(1);
       expect(expectedResult).to.deep.equal(actualResult);
     });
 
-    it('result > 10: should remove all subsets and return a new sorted phrase array', () => {
+    it('result > 1: should remove all subsets and return a new sorted phrase array', () => {
       let expectedResult = expectedPhraseArrays.removedAllSubsets2;
 
       let sortedPhraseArray = expectedPhraseArrays.sortedPhraseArray2;
@@ -96,7 +97,7 @@ describe('TopPhrases object,', () => {
       let numberOfPhrases = 5;
 
       let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhrasesSubsetsRemoved1, numberOfPhrases);
-      console.log("Actual", actualResult)
+
       expect(actualResult).to.be.an('array');
       expect(expectedResult).to.deep.equal(actualResult);
     });
@@ -106,7 +107,7 @@ describe('TopPhrases object,', () => {
       let numberOfPhrases = 5;
 
       let actualResult = TopPhrases.getTopArrayOfPhrases(expectedPhraseArrays.sortedPhrasesSubsetsRemoved2, numberOfPhrases);
-      console.log("ActualTies", actualResult)
+
       expect(actualResult).to.be.an('array');
       expect(expectedResult).to.deep.equal(actualResult);
     });

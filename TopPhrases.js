@@ -59,10 +59,14 @@ class TopPhrases {
         let innerPhrase = sortedPhraseArray[k][0];
         if (outerPhrase !== innerPhrase) {
           let isSubset = outerPhrase.match(innerPhrase);
+          console.log(i, sortedPhraseArray[i][0], k, sortedPhraseArray[k][0]);
           if (isSubset) {
+            // console.log(i, k)
             sortedPhraseArray.splice(k, 1);
-            if (k > 0) { k--; };
+            if (k >= 0) { k--; };
             if (i > k) { i--; }
+            console.log(" sorted", sortedPhraseArray)
+            console.log("-----------------------------------")
           }
         }
       }
