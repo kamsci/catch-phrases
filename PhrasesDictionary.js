@@ -21,11 +21,10 @@ class PhrasesDictionary {
     let allPhrasesArray = this.getPhrasesFromSentences(sentenceArray);
     this.buildPhraseDictionary(allPhrasesArray);
 
-    // Part 2 - Find Top 10 including singles and 5 excluding singles
+    // Part 2 - Find Top 10 including singles and top 10 excluding singles
     this.topTenPhrases = TopPhrases.determineTopPhrases(this.phraseObj, 10, true);
-    this.topTenPhrasesNoSingles = TopPhrases.determineTopPhrases(this.phraseObj, 5, false);
+    this.topTenPhrasesNoSingles = TopPhrases.determineTopPhrases(this.phraseObj, 10, false);
   }
-
 
   /*
     Split document string into an array of sentences with punctuation removed, except for hyphens in hyphenated words
